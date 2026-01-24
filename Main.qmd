@@ -166,11 +166,11 @@ identity_summary_table <- analyze_sequence_identity(
 cat("--- Sucesfully performed sequence correlation ---\n\n")
 ```
 
-# Classify Infections By Clade - Unstructured
+# Classify Infections By Clade
 
 ```{r}
-# --- Clade Based Infection Classification - Unstructured ---
-cat("--- Inferring clade and infection status based on the unstructured tree---\n")
+# --- Clade Based Infection Classification ---
+cat("--- Inferring clade and infection status ---\n")
 
 source("scripts/01_Analysis/03_InfectionClassification.R")
 
