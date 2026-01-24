@@ -1,0 +1,737 @@
+---
+title: "Phylodynamic Quantification of Porcine Reproductive and Respiratory Syndrome Virus Transmission within and between Compartments in a Vaccinated Swine Herd"
+author: "Leon"
+format:
+  html:
+    echo: True
+editor: visual
+execute: 
+    warning: false
+---
+
+# Data Validation
+
+```{r}
+# --- Data Preprocessing: Validation ---
+cat("--- Validating Sequences ---\n")
+
+source("scripts/01_Analysis/01_SequenceValidation.R") 
+
+# Define the list of all FASTA files that need validation.
+input_filepaths <- c(
+  "data/01_raw/WGS/WGS_Cohort.fasta",
+  "data/01_raw/ORF5/ORF5_Cohort.fasta",
+  "data/01_raw/WGS/WGS_Geographical.fasta",
+  "data/01_raw/WGS/WGS_TaxID1965066.fasta",
+  "data/01_raw/WGS/WGS_Vaccine.fasta",
+  "data/01_raw/ORF5/ORF5_TaxID1965066.fasta"
+  )
+
+output_directory <- "results/tables/01_SequenceValidation"
+
+# Execute the validation function
+validate_sequences(
+  fasta_files_to_validate = input_filepaths,
+  output_dir = output_directory
+)
+
+cat("--- Succesfully validated sequences ---\n\n")
+```
+
+# Combining fasta files
+
+```{r}
+# --- Data Combination: Combining FASTA files---
+cat("--- Combining FASTA files ---\n")
+source("scripts/02_Process/01_CombineFastaFiles.R")
+
+combine_tasks <- list(
+  
+  # WGS Extensive
+  list(
+    output = "data/02_processed/01_CombineFastaFiles/WGS_Extensive.fasta",
+    # Define the list of all FASTA files that need to be combined to generate the WGS          extensive dataset.
+    inputs = c(
+      "data/01_raw/WGS/WGS_Cohort.fasta",
+      "data/01_raw/WGS/WGS_Geographical.fasta",
+      "data/01_raw/WGS/WGS_TaxID1965066.fasta",
+      "data/01_raw/WGS/WGS_Vaccine.fasta"
+    )
+  ),
+  
+  # ORF5 Extensive
+  list(
+    output = "data/02_processed/01_CombineFastaFiles/ORF5_Extensive.fasta",
+    # Define the list of all FASTA files that need to be combined to generate the ORF5          extensive dataset.
+    inputs = c(
+      "data/01_raw/ORF5/ORF5_Cohort.fasta",
+      "data/01_raw/ORF5/ORF5_TaxID1965066.fasta"
+    )
+  )
+)
+
+
+for (task in combine_tasks) {
+  
+  cat(sprintf("Processing: %s ...\n", basename(task$output)))
+  
+  combine_fasta_files(
+    input_files = task$inputs,
+    output_file = task$output
+  )
+}
+
+cat("--- Succesfully combined fasta files ---\n\n")
+```
+
+# MSA
+
+```{r}
+# --- Multiple Sequence Alignment ---
+cat("--- Performing MSA ---\n")
+source("scripts/02_Process/02_MSA.R") 
+
+# 1. Define the files to align
+files_to_align <- c(
+  "data/02_processed/01_CombineFastaFiles/WGS_Extensive.fasta",
+  "data/02_processed/01_CombineFastaFiles/ORF5_Extensive.fasta",
+  "data/01_raw/WGS/WGS_Cohort.fasta",
+  "data/01_raw/ORF5/ORF5_Cohort.fasta"
+)
+
+# 2. Define the output directory
+msa_output_directory <- "data/02_processed/02_MSA"
+
+perform_msa(
+  input_files = files_to_align,
+  output_dir = msa_output_directory
+)
+
+cat("--- Sucessfully performed MSA ---\n\n")
+```
+
+# Reformatting Splitting and Correcting dates of Cohort Sequences
+
+```{r}
+# --- 1. Reformatting, splitting sequences on batch and correct sequence dates ---
+cat("--- Loading, Reformatting, Splitting and Correcting dates for sequences ---\n")
+source("scripts/02_Process/03_Reformat_Split_CorrectDates.R")
+
+# 1. Define the file paths that need to be processed
+input_filepaths <- c(
+  "data/02_processed/02_MSA/WGS_Cohort_Aligned.fasta",
+  "data/02_processed/02_MSA/ORF5_Cohort_Aligned.fasta"
+  )
+
+# 2. Define the output directory
+output_directory = "data/02_processed/03_Reformat_Split_CorrectDates"
+
+reformat_and_split_sequences(
+  input_data = input_filepaths,
+  output_dir = output_directory,
+  # --- Date Correction Settings ---
+  target_batch = "L1",          # The batch to fix (batch is indicted with L1 or L3)
+  target_week  = "9",           # Enter the week to fix (0, 2, 4, 6 or 9)
+  new_date     = "2017-07-25",  # Enter the date that the header should contain
+  target_region = "ORF5"        # Enter the genomic component (WGS or ORF5)
+)
+
+cat("--- Successfully reformatted, corrected, and split sequences into batches ---\n\n")
+```
+
+# Sequence Correlation
+
+```{r}
+# --- Sequence Identity Analysis ---
+cat("--- Analyzing Sequence Identity ---\n")
+
+source("scripts/01_Analysis/02_SequenceCorrelation.R") 
+
+# Define the list of FASTA files to be analyzed.
+files_to_analyze <- c(
+  "data/02_processed/03_Reformat_Split_CorrectDates/Combined_WGS_Cohort_Formatted_Aligned.fasta",
+  "data/02_processed/03_Reformat_Split_CorrectDates/Combined_ORF5_Cohort_Formatted_Aligned.fasta"
+)
+
+# Define the output directory where the output heatmap figure and tables should be stored
+figure_directory <- "figures/01_SequenceCorrelation"
+table_directory <- "results/tables/02_SequenceCorrelation"
+
+identity_summary_table <- analyze_sequence_identity(
+  fasta_files = files_to_analyze,
+  figure_dir = figure_directory,
+  table_dir = table_directory
+)
+
+cat("--- Sucesfully performed sequence correlation ---\n\n")
+```
+
+# Classify Infections By Clade - Unstructured
+
+```{r}
+# --- Clade Based Infection Classification - Unstructured ---
+cat("--- Inferring clade and infection status based on the unstructured tree---\n")
+
+source("scripts/01_Analysis/03_InfectionClassification.R")
+
+# Define the paths to the unstructured ORF5 and WGS tree files from the IQ-TREE analysis.
+treefile_ORF5 <- "results/trees/ORF5_Cohort_Unstructured/Combined_ORF5_Cohort_Formatted_Aligned.fasta.treefile"
+treefile_WGS <- "results/trees/WGS_Cohort_Unstructured/Combined_WGS_Cohort_Formatted_Aligned.fasta.treefile"
+
+# Define the output directory where the output classification table, filtered fasta file and annotated dendograms should be stored
+table_output_directory <- "results/tables/03_InfectionClassification"
+fasta_output_directory <- "data/02_processed/04_InfectionClassification"
+image_output_directory <- "figures/02_InfectionClassification"
+
+# Define the number of clades to split the sequences in
+num_clades = 5
+
+classify_infections_by_clade(
+  tree_file_path = treefile_ORF5,
+  num_clades,
+  table_output_dir = table_output_directory,
+  fasta_output_dir = fasta_output_directory,
+  image_output_dir = image_output_directory,
+  node_size = 1.2,
+  label_size = 0.7,
+  legend_size = 1.2
+)
+
+classify_infections_by_clade(
+  tree_file_path = treefile_WGS,
+  num_clades,
+  table_output_dir = table_output_directory,
+  fasta_output_dir = fasta_output_directory,
+  image_output_dir = image_output_directory,
+  node_size = 1.2,
+  label_size = 0.7,
+  legend_size = 1.2  
+)
+
+cat("--- Sucesfully classified infections ---\n\n")
+```
+
+# Merge Structured Metadata With Infection Status and Sequence Correlation
+
+```{r}
+# --- 7. Merge structured data with with Sequence classification and Sequence Correlation output files ---
+cat("--- Merging Structured Metadata with Infection Classifications and Sequence Correlation ---\n")
+source("scripts/03_Metadata/01_Table_Metadata.R")
+
+# Define file path for the structured hand annotated metadata file based on supplementary files from Clilverd et al., (2023)
+metadata_file <- "data/03_Metadata/MetadataHandAnnotated.csv"
+
+# Define file path for the sequence correlation per pig (identity_summary_by_pigID.csv output from the Sequence Correlation output)
+identity_summary_file <- "results/tables/02_SequenceCorrelation/identity_summary_by_pigID.csv" 
+
+# Create a list of the specific sequence classification CSV files to merge (csv file output from InfectionClassification)
+classification_files_list <- c(
+  "results/tables/03_InfectionClassification/Combined_ORF5_Cohort_Formatted_Aligned_infection_classification_details.csv",
+  "results/tables/03_InfectionClassification/Combined_WGS_Cohort_Formatted_Aligned_infection_classification_details.csv"
+)
+
+# Define the output filename
+output_merged_file <- "data/03_Metadata/MetadataExtensive.csv"
+
+merge_data(
+  metadata_path = metadata_file,
+  classification_files_list = classification_files_list,
+  identity_summary_path = identity_summary_file,
+  output_path = output_merged_file
+)
+
+cat("--- Metadata merge complete! ---\n\n")
+```
+
+# Add Structural Information to Sequence Headers
+
+```{r}
+# --- Appending Deme Information to FASTA Headers ---
+cat("--- Appending Structural Information to FASTA Headers ---\n")
+source("scripts/02_Process/04_AppendStructuralData.R")
+
+# Define the path to the structured metadata file
+metadata_file <- "data/03_Metadata/MetadataExtensive.csv"
+
+# Define the path to the FASTA file to be processed
+fasta_to_process_ORF5_filtered <- "data/02_processed/04_InfectionClassification/Combined_ORF5_Cohort_Formatted_Aligned_UniqueInfection.fasta"
+
+fasta_to_process_ORF5_unfiltered <- "data/02_processed/03_Reformat_Split_CorrectDates/Combined_ORF5_Cohort_Formatted_Aligned.fasta"
+
+fasta_to_process_WGS_filtered <- "data/02_processed/04_InfectionClassification/Combined_WGS_Cohort_Formatted_Aligned_UniqueInfection.fasta"
+
+fasta_to_process_WGS_unfiltered <- "data/02_processed/03_Reformat_Split_CorrectDates/Combined_WGS_Cohort_Formatted_Aligned.fasta"
+
+# Define where the new FASTA files should be saved
+output_dir <- "data/02_processed/05_AppendStructuralData"
+
+output_filename_ORF5_b1_filtered <-  "b1_ORF5_Cohort_Formatted_Aligned_UniqueInfection_AppendStructuralData.fasta"
+
+output_filename_ORF5_b1_unfiltered <-  "b1_ORF5_Cohort_Formatted_Aligned_AppendStructuralData.fasta"
+
+output_filename_ORF5_Combined_filtered <- "Combined_ORF5_Cohort_Formatted_Aligned_UniqueInfection_AppendStructuralData.fasta"
+
+output_filename_ORF5_Combined_unfiltered <- "Combined_ORF5_Cohort_Formatted_Aligned_AppendStructuralData.fasta"
+
+output_filename_WGS_Combined_filtered <- "Combined_WGS_Cohort_Formatted_Aligned_UniqueInfection_AppendStructuralData.fasta"
+
+output_filename_WGS_Combined_unfiltered <- "Combined_WGS_Cohort_Formatted_Aligned_AppendStructuralData.fasta"
+
+# Execute functions
+cat(" -> Running for ORF5 batch 1 filtered \n")
+append_pen_and_room(
+  metadata_csv_path = metadata_file,
+  input_fasta_path = fasta_to_process_ORF5_filtered,
+  output_dir = output_dir,
+  custom_output_filename = output_filename_ORF5_b1_filtered,
+  batch_to_remove = "L3"
+)
+
+cat(" -> Running for ORF5 batch 1 unfiltered \n")
+append_pen_and_room(
+  metadata_csv_path = metadata_file,
+  input_fasta_path = fasta_to_process_ORF5_unfiltered,
+  output_dir = output_dir,
+  custom_output_filename = output_filename_ORF5_b1_unfiltered,
+  batch_to_remove = "L3"
+)
+
+cat(" -> Running for ORF5 combined filtered \n")
+append_pen_and_room(
+  metadata_csv_path = metadata_file,
+  input_fasta_path = fasta_to_process_ORF5_filtered,
+  output_dir = output_dir,
+  custom_output_filename = output_filename_ORF5_Combined_filtered,
+  batch_to_remove = NULL
+)
+
+cat(" -> Running for ORF5 combined unfiltered \n")
+append_pen_and_room(
+  metadata_csv_path = metadata_file,
+  input_fasta_path = fasta_to_process_ORF5_unfiltered,
+  output_dir = output_dir,
+  custom_output_filename = output_filename_ORF5_Combined_unfiltered,
+  batch_to_remove = NULL
+)
+
+cat(" -> Running for WGS combined filtered \n")
+append_pen_and_room(
+  metadata_csv_path = metadata_file,
+  input_fasta_path = fasta_to_process_WGS_filtered,
+  output_dir = output_dir,
+  custom_output_filename = output_filename_WGS_Combined_filtered,
+  batch_to_remove = NULL
+)
+
+cat(" -> Running for WGS combined unfiltered \n")
+append_pen_and_room(
+  metadata_csv_path = metadata_file,
+  input_fasta_path = fasta_to_process_WGS_unfiltered,
+  output_dir = output_dir,
+  custom_output_filename = output_filename_WGS_Combined_unfiltered,
+  batch_to_remove = NULL
+)
+
+cat("--- Succesfully annotated sequence headers with structural data! ---\n\n")
+```
+
+# Phylogram Plot
+
+```{r}
+
+# --- 4. Basic Cladogram Plotting ---
+cat("--- Generating phylogram ---\n")
+
+source("scripts/04_Visualization/01_PlotPhylogram.R") 
+
+# Define the path to the structured tree files
+treefile_ORF5 <- "results/trees/ORF5_Cohort_Structured/Combined_ORF5_Cohort_Formatted_Aligned_AppendStructuralData.fasta.treefile"
+
+treefile_WGS <- "results/trees/WGS_Cohort_Structured/Combined_WGS_Cohort_Formatted_Aligned_AppendStructuralData.fasta.treefile"
+
+infection_classification_ORF5 <- "results/tables/03_InfectionClassification/Combined_ORF5_Cohort_Formatted_Aligned_infection_classification_details.csv"
+
+infection_classification_WGS <- "results/tables/03_InfectionClassification/Combined_WGS_Cohort_Formatted_Aligned_infection_classification_details.csv"
+
+
+# Define the output directory
+phylogram_output_dir <- "figures/03_Phylogram"
+
+# Define the output filenames for the phylograms for WGS and ORF5
+phylogram_filename_ORF5 <- "Combined_ORF5_Cohort_Phylogram.png"
+phylogram_filename_WGS <- "Combined_WGS_Cohort_Phylogram.png"
+
+phylogram(
+  tree_file_path = treefile_ORF5,
+  output_dir = phylogram_output_dir,
+  csv_file_path = infection_classification_ORF5,
+  output_filename = phylogram_filename_ORF5,
+  legend_cex = 2,
+  bootstrap_cex = 1.5,
+  tip_cex = 1,
+  node_symbol_cex = 1.8,
+  star_cex = 2,
+  branch_width = 4,
+  tip_label_offset = 0.0015,
+  tree_x_offset = 0.003,
+  visualize_clades = TRUE
+)
+
+phylogram(
+  tree_file_path = treefile_WGS,
+  output_dir = phylogram_output_dir,
+  csv_file_path = infection_classification_WGS,
+  output_filename = phylogram_filename_WGS,
+  legend_cex = 2,
+  bootstrap_cex = 2,
+  tip_cex = 1.5,
+  node_symbol_cex = 2.5,
+  star_cex = 2.5,
+  branch_width = 4,
+  tip_label_offset = 0.0015,
+  tree_x_offset = 0.003,
+  visualize_clades = TRUE
+)
+
+cat("--- Step 4 complete! ---\n\n")
+```
+
+# BDSKY Analysis and Visualization
+
+## Analyse BDSKY Log Files
+
+```{r}
+# --- 7. Summarize BEAST Log File ---
+cat("--- Summarizing BEAST Log Files for BDSKY---\n")
+
+source("scripts/01_Analysis/04_SummariseLog.R")
+
+# Define the log files to be processed for ORF5
+beast_log_files_to_process_ORF5_BDSKY <- c(
+  "models/BDSKY/ORF5/BDSKY_ORF5_3Epochs/BDSKY_ORF5_3Epochs.log",
+  "models/BDSKY/ORF5/BDSKY_ORF5_4Epochs/BDSKY_ORF5_4Epochs.log",
+  "models/BDSKY/ORF5/BDSKY_ORF5_5Epochs/BDSKY_ORF5_5Epochs.log"
+  )
+
+# Define the log files to be processed for WGS
+beast_log_files_to_process_WGS_BDSKY <- c(
+  "models/BDSKY/WGS/BDSKY_WGS_3Epochs/BDSKY_WGS_3Epochs.log",
+  "models/BDSKY/WGS/BDSKY_WGS_4Epochs/BDSKY_WGS_4Epochs.log",
+  "models/BDSKY/WGS/BDSKY_WGS_5Epochs/BDSKY_WGS_5Epochs.log"
+  )
+
+# Define the log files to be processed for Sample From Prior Analysis
+beast_log_files_to_process_SampleFromPrior_BDSKY <- c(
+  "models/BDSKY/SampleFromPrior/BDSKY_ORF5_3Epochs_SampleFromPrior/BDSKY_ORF5_3Epochs_SampleFromPrior.log",
+  "models/BDSKY/SampleFromPrior/BDSKY_ORF5_4Epochs_SampleFromPrior/BDSKY_ORF5_4Epochs_SampleFromPrior.log",
+  "models/BDSKY/SampleFromPrior/BDSKY_ORF5_5Epochs_SampleFromPrior/BDSKY_ORF5_5Epochs_SampleFromPrior.log"
+  )
+
+# Define the directory for the output results files for ORF5
+beast_results_dir_ORF5_BDSKY <- "results/logs/BDSKY_ORF5"
+
+# Define the directory for the output results files for WGS
+beast_results_dir_WGS_BDSKY <- "results/logs/BDSKY_WGS"
+
+# Define the directory for the output results files for SampleFromPrior
+beast_results_dir_SampleFromPrior_BDSKY <- "results/logs/BDSKY_SampleFromPrior"
+
+# Execute the summary function for ORF5
+summarize_beast_logs(
+  log_file_paths = beast_log_files_to_process_ORF5_BDSKY,
+  output_dir = beast_results_dir_ORF5_BDSKY,
+  burn_in_fraction = 0.1
+)
+
+# Execute the summary function for WGS
+summarize_beast_logs(
+  log_file_paths = beast_log_files_to_process_WGS_BDSKY,
+  output_dir = beast_results_dir_WGS_BDSKY,
+  burn_in_fraction = 0.1
+)
+
+# Execute the summary function for SampleFromPrior
+summarize_beast_logs(
+  log_file_paths = beast_log_files_to_process_SampleFromPrior_BDSKY,
+  output_dir = beast_results_dir_SampleFromPrior_BDSKY,
+  burn_in_fraction = 0.1
+)
+
+cat("--- Succesfully summarised the log files ---\n\n")
+```
+
+## Plot BDSKY Log Files (Error Bar Plot)
+
+```{r}
+# --- Plotting BDSKY Results ---
+cat("--- Generating BDSKY Error Bar Plots ---\n")
+source("scripts/04_Visualization/02_PlotBDSKY_ErrorBar.R")
+
+#Define all ORF5 processed log files
+file_ORF5_3ep   <- "results/logs/BDSKY_ORF5/BDSKY_ORF5_3Epochs.tsv"
+file_ORF5_4ep   <- "results/logs/BDSKY_ORF5/BDSKY_ORF5_4Epochs.tsv"
+file_ORF5_5ep   <- "results/logs/BDSKY_ORF5/BDSKY_ORF5_5Epochs.tsv"
+
+#Define all WGS processed log files
+file_WGS_3ep    <- "results/logs/BDSKY_WGS/BDSKY_WGS_3Epochs.tsv"
+file_WGS_4ep    <- "results/logs/BDSKY_WGS/BDSKY_WGS_4Epochs.tsv" 
+file_WGS_5ep    <- "results/logs/BDSKY_WGS/BDSKY_WGS_5Epochs.tsv"
+
+#Define all SampleFromPrior processed log files
+file_SampleFromPrior_3ep <- "results/logs/BDSKY_SampleFromPrior/BDSKY_ORF5_3Epochs_SampleFromPrior.tsv"
+file_SampleFromPrior_4ep <- "results/logs/BDSKY_SampleFromPrior/BDSKY_ORF5_4Epochs_SampleFromPrior.tsv"
+file_SampleFromPrior_5ep <- "results/logs/BDSKY_SampleFromPrior/BDSKY_ORF5_5Epochs_SampleFromPrior.tsv"
+
+# Define output location
+bdsky_output_dir <- "figures/04_BDSKY"
+
+plot_bdsky_results(
+  # 1. Define File Paths
+  results_file_paths = c(
+    file_ORF5_3ep,        
+    file_WGS_3ep,
+    file_SampleFromPrior_3ep, 
+    file_ORF5_4ep,
+    file_WGS_4ep,
+    file_SampleFromPrior_4ep,
+    file_ORF5_5ep,
+    file_WGS_5ep,
+    file_SampleFromPrior_5ep
+  ),
+  
+  # 2. Define Color Groups
+  color_groups = c(
+    "3 Epochs", 
+    "3 Epochs",
+    "3 Epochs", 
+    "4 Epochs", 
+    "4 Epochs",
+    "4 Epochs",
+    "5 Epochs",
+    "5 Epochs",
+    "5 Epochs"
+  ),
+  
+  # 3. Define Data Source
+  data_groups = c(
+    "ORF5", 
+    "WGS", 
+    "Prior", 
+    "ORF5", 
+    "WGS", 
+    "Prior", 
+    "ORF5", 
+    "WGS", 
+    "Prior"
+  ),
+  
+  output_dir       = bdsky_output_dir,
+  output_filename  = "BDSKY_ErrorBar.png",
+  plot_title       = "",
+  
+  # 4. Visualization Flags
+  show_re_values           = FALSE,
+  show_change_times        = FALSE,
+  show_clock_rate          = TRUE,
+  show_sampling_batch1     = TRUE,
+  show_sampling_batch2     = TRUE,
+  show_origin              = TRUE,
+  show_cov                 = TRUE,
+  show_become_uninfectious = TRUE,
+  
+  # 5. Figure size settings
+  axis_text_size = 18,    
+  y_axis_text_size = 18,
+  legend_text_size = 20,  
+  strip_text_size = 18,   
+  plot_title_size = 18,
+  figure_height = 12,
+  point_size = 4,
+  figure_width = 14,        
+  row_height_base = 3,
+  y_axis_padding = 0.05,
+)
+```
+
+## Plot BDSKY Log Files (Skyline)
+
+```{r}
+# --- 7. Generate BEAST Skyline Plots ---
+cat("--- Generating BDSKY Skyline Plots ---\n")
+
+source("scripts/04_Visualization/03_PlotBDSKY_Skyline.R") 
+
+plots_output_dir <- "figures/04_BDSKY"
+
+# Define Fasta files for density plotting
+fasta_path_ORF5 <- "data/02_processed/04_InfectionClassification/Combined_ORF5_Cohort_Formatted_Aligned_UniqueInfection.fasta"
+fasta_path_WGS  <- "data/02_processed/04_InfectionClassification/Combined_WGS_Cohort_Formatted_Aligned_UniqueInfection.fasta"
+
+# Define processed log files for ORF5
+orf5_3ep <- "results/logs/BDSKY_ORF5/BDSKY_ORF5_3Epochs.tsv"
+orf5_4ep <- "results/logs/BDSKY_ORF5/BDSKY_ORF5_4Epochs.tsv"
+orf5_5ep <- "results/logs/BDSKY_ORF5/BDSKY_ORF5_5Epochs.tsv"
+
+# Define processed log files for WGS
+wgs_3ep <- "results/logs/BDSKY_WGS/BDSKY_WGS_3Epochs.tsv"
+wgs_4ep <- "results/logs/BDSKY_WGS/BDSKY_WGS_4Epochs.tsv"
+wgs_5ep <- "results/logs/BDSKY_WGS/BDSKY_WGS_5Epochs.tsv"
+
+# Define processed log files for Sample From Prior
+orf5_3ep_prior <- "results/logs/BDSKY_SampleFromPrior/BDSKY_ORF5_3Epochs_SampleFromPrior.tsv"
+orf5_4ep_prior <- "results/logs/BDSKY_SampleFromPrior/BDSKY_ORF5_4Epochs_SampleFromPrior.tsv"
+
+# The function plots in a 2-column grid filling Row 1 (Left, Right), then Row 2, etc.
+input_combined <- list(
+  # --- ROW 1: 3 Epochs ---
+  list(results = c(orf5_3ep), fasta = fasta_path_ORF5), # Panel A
+  list(results = c(wgs_3ep),  fasta = fasta_path_WGS),  # Panel B
+  
+  # --- ROW 2: 4 Epochs ---
+  list(results = c(orf5_4ep), fasta = fasta_path_ORF5), # Panel C
+  list(results = c(wgs_4ep),  fasta = fasta_path_WGS),  # Panel D
+  
+  # --- ROW 3: 5 Epochs ---
+  list(results = c(orf5_5ep), fasta = fasta_path_ORF5), # Panel E
+  list(results = c(wgs_5ep),  fasta = fasta_path_WGS),  # Panel F
+
+  # --- ROW 4: Priors ---
+  list(results = c(orf5_3ep_prior), fasta = fasta_path_ORF5), # Panel G
+  list(results = c(orf5_4ep_prior), fasta = fasta_path_ORF5)  # Panel H
+)
+
+Re_plot(
+  input_groups = input_combined,
+  output_dir = plots_output_dir,
+  output_filename = "BDSKY_Skyline.pdf", 
+  t_present_date = "2018-04-25",
+  density_bandwidth = 0.05, 
+  outbreak_date = "2017-04-08",
+  batch1_start_date = "2017-05-23",
+  batch1_end_date = "2017-07-25",
+  batch2_start_date = "2017-12-08",
+  batch2_end_date = "2018-02-09",
+  batch3_start_date = "2018-03-01",
+  batch3_end_date = "2018-04-25",
+  title_font_size = 15,
+  axis_font_size = 12,
+  legend_font_size = 15,
+  show_batch_bars = TRUE
+)
+```
+
+# BDMM Analysis and Visualization
+
+## Analyse BDMM Log Files
+
+```{r}
+# --- 7. Summarize BEAST Log File ---
+cat("--- Summarizing BEAST Log Files for BDMM---\n")
+
+# Load the function from the script
+source("scripts/01_Analysis/04_SummariseLog.R")
+
+# Define the log files to process for ORF5
+beast_log_files_to_process_ORF5_BDMM <- c(
+  "models/BDMM/BDMM_ORF5_DiscreteMigration/BDMM_ORF5_DiscreteMigration.log",
+  "models/BDMM/BDMM_ORF5_ContinuousMigration/BDMM_ORF5_Isolated_ContinuousMigration.log",
+  "models/BDMM/BDMM_ORF5_DiscreteMigration_SampleFromPrior/BDMM_ORF5_DiscreteMigration_SampleFromPrior.log",
+  "models/BDMM/BDMM_ORF5_ContinuousMigration_SampleFromPrior/BDMM_ORF5_ContinuousMigration_SampleFromPrior.log"
+  )
+
+# Define the *full path* for the output results file for ORF5
+beast_results_dir_ORF5_BDMM <- "results/logs/BDMM_ORF5"
+
+# Execute the summary function for ORF5
+summarize_beast_logs(
+  log_file_paths = beast_log_files_to_process_ORF5_BDMM,
+  output_dir = beast_results_dir_ORF5_BDMM,
+  burn_in_fraction = 0.1
+)
+```
+
+## Plot BDMM Log Files (Error Bar Plot)
+
+```{r}
+# --- 7. BDMM Model Comparison Plots ---
+cat("--- Plotting BDMM Model Results ---\n")
+source("scripts/04_Visualization/04_PlotBDMM_ErrorBar.R")
+
+# Define processed log files for BDMM
+BDMM_files <- c(
+  "results/logs/BDMM_ORF5/BDMM_ORF5_DiscreteMigration.tsv",
+  "results/logs/BDMM_ORF5/BDMM_ORF5_DiscreteMigration_SampleFromPrior.tsv",
+  "results/logs/BDMM_ORF5/BDMM_ORF5_Isolated_ContinuousMigration.tsv",
+  "results/logs/BDMM_ORF5/BDMM_ORF5_ContinuousMigration_SampleFromPrior.tsv"
+)
+
+# Define model labels (Must match order of files)
+BDMM_labels <- c(
+  "Discrete Migration - Data Informed",
+  "Discrete Migration - Sample From Prior",
+  "Continuous Migration - Data Informed",
+  "Continuous Migration - Sample From Prior"
+)
+
+# Define output directory
+plot_output_dir <- "figures/05_BDMM"
+output_filename <- "BDMM_ErrorBar.png"
+
+plot_output_dir_thesis <- "Thesis/Figures"
+output_filename_thesis <- "BDMM_ErrorBar_Thesis.png" # Still delete
+
+plot_bdmm_results(
+  results_file_paths = BDMM_files,
+  model_names = BDMM_labels,
+  output_dir = plot_output_dir,
+  output_filename = output_filename,
+  show_re = TRUE,
+  show_sampling = TRUE,
+  show_origin = TRUE,
+  show_clock = TRUE,
+  show_become_uninfectious = TRUE,
+  show_migration = TRUE,
+  show_reservoir = FALSE,
+  include_continuous_models = TRUE,
+  base_font_size = 12,
+  line_width = NULL,                          
+  axis_text_size = 18,    
+  y_axis_text_size = 18,
+  legend_text_size = 18,  
+  strip_text_size = 17,   
+  plot_title_size = 17,
+  figure_height = 20,
+  point_size = 4,
+  figure_width = 14,        
+  row_height_base = 3,
+  y_axis_padding = 0.05
+)
+
+#FOR THESIS
+plot_bdmm_results(
+  results_file_paths = BDMM_files,
+  model_names = BDMM_labels,
+  output_dir = plot_output_dir_thesis,
+  output_filename = output_filename_thesis,
+  show_re = TRUE,
+  show_sampling = TRUE,
+  show_origin = TRUE,
+  show_clock = TRUE,
+  show_become_uninfectious = TRUE,
+  show_migration = TRUE,
+  show_reservoir = FALSE,
+  include_continuous_models = FALSE,
+  base_font_size = 12,
+  line_width = NULL,                          
+  axis_text_size = 18,    
+  y_axis_text_size = 18,
+  legend_text_size = 20,  
+  strip_text_size = 17,   
+  plot_title_size = 17,
+  figure_height = 20,
+  point_size = 4,
+  figure_width = 14,        
+  row_height_base = 3,
+  y_axis_padding = 0.05
+)
+```

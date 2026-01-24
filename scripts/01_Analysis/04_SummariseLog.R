@@ -1,0 +1,147 @@
+#' @title Summarize Multiple BEAST Log Files
+#' @description Parses multiple BEAST .log files, removes burn-in, and calculates
+#' summary statistics (Mean, 95% HPD, ESS) for each parameter.
+#' Output filenames are derived from input filenames by replacing the .log extension with .tsv.
+#' @param log_file_paths A character vector containing full paths to the input BEAST .log files.
+#' @param output_dir The directory where the resulting .tsv files should be saved.
+#' @param burn_in_fraction A numeric value between 0 and 1 indicating the
+#' fraction of states to remove as burn-in. Defaults to 0.1 (10%).
+#' @author Leon Balthaus, Gemini
+
+# --- 1. FUNCTION DEFINITION ---
+
+summarize_beast_logs <- function(log_file_paths, output_dir, burn_in_fraction = 0.1) {
+  
+  library(coda)
+  
+  # 2. Validate global inputs
+  if (length(log_file_paths) == 0) {
+    stop("Error: No input log files provided.")
+  }
+  
+  if (!is.numeric(burn_in_fraction) || burn_in_fraction < 0 || burn_in_fraction >= 1) {
+    stop("Error: 'burn_in_fraction' must be a numeric value between 0 and 1.")
+  }
+  
+  # Validate and Create Output Directory
+  if (!dir.exists(output_dir)) {
+    cat("Warning: Output directory not found. Trying to create it: ", output_dir, "\n")
+    dir.create(output_dir, recursive = TRUE, showWarnings = FALSE)
+    if (!dir.exists(output_dir)) {
+      stop("Error: Could not create output directory: ", output_dir)
+    }
+  }
+  
+  # Track success of the batch
+  overall_success <- TRUE
+  
+  # --- 3. MAIN LOOP ---
+  cat("Starting batch processing of", length(log_file_paths), "files...\n")
+  cat("--------------------------------------------------\n")
+  
+  for (log_file_path in log_file_paths) {
+    
+    tryCatch({
+      
+      # Generate Output Filename
+      file_name <- basename(log_file_path)
+      
+      # Replace .log  with .tsv, or append .tsv if .log is missing
+      if (grepl("\\.log$", file_name, ignore.case = TRUE)) {
+        new_file_name <- sub("\\.log$", ".tsv", file_name, ignore.case = TRUE)
+      } else {
+        new_file_name <- paste0(file_name, ".tsv")
+      }
+      
+      output_file_path <- file.path(output_dir, new_file_name)
+      
+      # Validate specific file existence
+      if (!file.exists(log_file_path)) {
+        stop("File not found: ", log_file_path)
+      }
+      
+      cat("\nProcessing:", file_name, "\n")
+      
+      # --- Read the log file ---
+      log_data <- read.delim(log_file_path, comment.char = "#", stringsAsFactors = FALSE)
+      
+      # --- Apply burn-in ---
+      n_states <- nrow(log_data)
+      if (n_states == 0) stop("Log file contains no data rows.")
+      
+      burn_in_states <- floor(burn_in_fraction * n_states)
+      log_data_burned <- log_data[(burn_in_states + 1):n_states, ]
+      
+      if (nrow(log_data_burned) == 0) {
+        stop("No states left after removing burn-in.")
+      }
+      
+      # --- Remove the 'state' or 'Sample' column ---
+      if ("state" %in% colnames(log_data_burned)) {
+        log_data_burned$state <- NULL
+      } else if ("Sample" %in% colnames(log_data_burned)) {
+        log_data_burned$Sample <- NULL
+      }
+      
+      # --- Calculate Stats Parameter by Parameter ---
+      param_names <- colnames(log_data_burned)
+      
+      stats_list <- lapply(param_names, function(param_name) {
+        suppressWarnings({
+          column_data <- log_data_burned[[param_name]]
+          mean_val <- mean(column_data, na.rm = TRUE)
+          
+          # Initialize default values
+          hpd_low <- mean_val 
+          hpd_up <- mean_val
+          ess_val <- NA
+          
+          data_variance <- var(column_data, na.rm = TRUE)
+          
+          if (!is.na(data_variance) && data_variance > 0) {
+            tryCatch({
+              mcmc_obj <- as.mcmc(na.omit(column_data))
+              
+              if(length(mcmc_obj) > 0) {
+                # 1. Calculate HPD
+                hpd <- HPDinterval(mcmc_obj, prob = 0.95)
+                hpd_low <- hpd[1, "lower"] 
+                hpd_up <- hpd[1, "upper"]
+                
+                # 2. Calculate ESS (Effective Sample Size)
+                ess_val <- effectiveSize(mcmc_obj)
+              }
+            }, error = function(e_calc) {
+            })
+          }
+          
+          return(data.frame(
+            Parameter = param_name,
+            Mean = mean_val,
+            `95%_HPD_Lower` = hpd_low,
+            `95%_HPD_Upper` = hpd_up,
+            ESS = ess_val,
+            check.names = FALSE,
+            stringsAsFactors = FALSE
+          ))
+        })
+      }) 
+      
+      # --- Assemble and Save ---
+      final_table <- do.call(rbind, stats_list)
+      row.names(final_table) <- NULL
+      
+      write.table(final_table, output_file_path, row.names = FALSE, sep = "\t", quote = FALSE)
+      
+      cat("-> Saved to:", new_file_name, "\n")
+      
+    }, error = function(e) {
+      cat("!!! Error processing '", basename(log_file_path), "': ", e$message, "\n", sep = "")
+      overall_success <<- FALSE
+    })
+  }
+  
+  cat("\n--------------------------------------------------\n")
+  cat("Batch processing complete.\n")
+  return(invisible(overall_success))
+}

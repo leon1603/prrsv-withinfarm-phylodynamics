@@ -1,0 +1,407 @@
+pigID_weekOfSampling,week,room,pen,unique_pen,transmission_chain,new_infection,Introduced,Removed,switched_from_pen,switched_from_room,ORF5_clade,ORF5_classification,WGS_clade,WGS_classification,ORF5_match_count,ORF5_matching_samples,Notes
+501_0,0,Farrowing,3,3,none,FALSE,TRUE,FALSE,none,none,none,none,none,none,NA,NA,NA
+502_0,0,Farrowing,3,3,none,FALSE,TRUE,FALSE,none,none,none,none,none,none,NA,NA,Identified as the source of 8 horizontal infection cases.
+503_0,0,Farrowing,3,3,none,FALSE,TRUE,FALSE,none,none,none,none,none,none,NA,NA,NA
+504_0,0,Farrowing,3,3,none,FALSE,TRUE,FALSE,none,none,none,none,none,none,NA,NA,NA
+505_0,0,Farrowing,4,4,none,FALSE,TRUE,FALSE,none,none,none,none,none,none,NA,NA,NA
+506_0,0,Farrowing,4,4,none,FALSE,TRUE,TRUE,none,none,none,none,none,none,NA,NA,NA
+507_0,0,Farrowing,4,4,none,FALSE,TRUE,FALSE,none,none,none,none,none,none,NA,NA,NA
+508_0,0,Farrowing,4,4,none,FALSE,TRUE,FALSE,none,none,none,none,none,none,NA,NA,NA
+509_0,0,Farrowing,4,4,none,FALSE,TRUE,FALSE,none,none,none,none,none,none,NA,NA,NA
+510_0,0,Farrowing,4,4,none,FALSE,TRUE,FALSE,none,none,none,none,none,none,NA,NA,NA
+511_0,0,Farrowing,8,8,none,FALSE,TRUE,TRUE,none,none,none,none,none,none,NA,NA,NA
+512_0,0,Farrowing,8,8,none,FALSE,TRUE,FALSE,none,none,none,none,none,none,NA,NA,NA
+513_0,0,Farrowing,8,8,none,FALSE,TRUE,TRUE,none,none,none,none,none,none,NA,NA,NA
+514_0,0,Farrowing,8,8,none,FALSE,TRUE,FALSE,none,none,none,none,none,none,NA,NA,NA
+515_0,0,Farrowing,8,8,98,TRUE,TRUE,FALSE,none,none,1,Initial Infection,none,none,NA,NA,Born-viremic and remained so for the entire study but did not transmit the virus. Was re-infected with a different variant at 9 weeks.
+516_0,0,Farrowing,8,8,none,FALSE,TRUE,FALSE,none,none,none,none,none,none,NA,NA,NA
+517_0,0,Farrowing,10,10,none,FALSE,TRUE,FALSE,none,none,none,none,none,none,NA,NA,NA
+518_0,0,Farrowing,10,10,2,TRUE,TRUE,FALSE,none,none,2,Initial Infection,none,none,1,519_0,vertical transmission event that led to the establishment of founder viral variant
+519_0,0,Farrowing,10,10,2,TRUE,TRUE,FALSE,none,none,2,Initial Infection,none,none,1,518_0,vertical transmission event that led to the establishment of founder viral variant
+520_0,0,Farrowing,10,10,2,TRUE,TRUE,FALSE,none,none,2,Initial Infection,none,none,NA,NA,vertical transmission event that led to the establishment of founder viral variant
+521_0,0,Farrowing,10,10,2,TRUE,TRUE,FALSE,none,none,2,Initial Infection,none,none,NA,NA,vertical transmission event that led to the establishment of founder viral variant
+522_0,0,Farrowing,10,10,2,TRUE,TRUE,FALSE,none,none,2,Initial Infection,none,none,NA,NA,vertical transmission event that led to the establishment of founder viral variant
+523_0,0,Farrowing,11,11,none,FALSE,TRUE,FALSE,none,none,none,none,none,none,NA,NA,NA
+524_0,0,Farrowing,11,11,none,FALSE,TRUE,FALSE,none,none,none,none,none,none,NA,NA,NA
+525_0,0,Farrowing,11,11,none,FALSE,TRUE,FALSE,none,none,none,none,none,none,NA,NA,NA
+526_0,0,Farrowing,11,11,98,FALSE,TRUE,FALSE,none,none,none,none,none,none,NA,NA,vertical transmission event that led to the establishment of founder viral variant
+527_0,0,Farrowing,11,11,98,FALSE,TRUE,FALSE,none,none,none,none,none,none,NA,NA,vertical transmission event that led to the establishment of founder viral variant
+528_0,0,Farrowing,11,11,none,FALSE,TRUE,FALSE,none,none,none,none,none,none,NA,NA,NA
+529_0,0,Farrowing,18,18,none,FALSE,TRUE,TRUE,none,none,none,none,none,none,NA,NA,NA
+530_0,0,Farrowing,18,18,none,FALSE,TRUE,FALSE,none,none,none,none,none,none,NA,NA,NA
+531_0,0,Farrowing,18,18,none,FALSE,TRUE,TRUE,none,none,none,none,none,none,NA,NA,NA
+532_0,0,Farrowing,18,18,none,FALSE,TRUE,TRUE,none,none,none,none,none,none,NA,NA,NA
+533_0,0,Farrowing,18,18,none,FALSE,TRUE,FALSE,none,none,none,none,none,none,NA,NA,NA
+534_0,0,Farrowing,18,18,none,FALSE,TRUE,FALSE,none,none,none,none,none,none,NA,NA,NA
+535_0,0,Farrowing,15,15,none,FALSE,TRUE,FALSE,none,none,none,none,none,none,NA,NA,NA
+536_0,0,Farrowing,15,15,none,FALSE,TRUE,FALSE,none,none,none,none,none,none,NA,NA,NA
+537_0,0,Farrowing,15,15,none,FALSE,TRUE,FALSE,none,none,none,none,none,none,NA,NA,NA
+538_0,0,Farrowing,15,15,none,FALSE,TRUE,FALSE,none,none,none,none,none,none,NA,NA,NA
+539_0,0,Farrowing,15,15,none,FALSE,TRUE,FALSE,none,none,none,none,none,none,NA,NA,NA
+540_0,0,Farrowing,15,15,none,FALSE,TRUE,TRUE,none,none,none,none,none,none,NA,NA,NA
+541_0,0,Farrowing,16,16,none,FALSE,TRUE,FALSE,none,none,none,none,none,none,NA,NA,NA
+542_0,0,Farrowing,16,16,none,FALSE,TRUE,FALSE,none,none,none,none,none,none,NA,NA,NA
+543_0,0,Farrowing,16,16,none,FALSE,TRUE,FALSE,none,none,none,none,none,none,NA,NA,NA
+544_0,0,Farrowing,16,16,none,FALSE,TRUE,FALSE,none,none,none,none,none,none,NA,NA,NA
+545_0,0,Farrowing,16,16,none,FALSE,TRUE,FALSE,none,none,none,none,none,none,NA,NA,NA
+546_0,0,Farrowing,16,16,none,FALSE,TRUE,FALSE,none,none,none,none,none,none,NA,NA,NA
+547_0,0,Farrowing,12,12,none,FALSE,TRUE,FALSE,none,none,none,none,none,none,NA,NA,NA
+548_0,0,Farrowing,12,12,none,FALSE,TRUE,FALSE,none,none,none,none,none,none,NA,NA,NA
+549_0,0,Farrowing,12,12,none,FALSE,TRUE,FALSE,none,none,none,none,none,none,NA,NA,NA
+550_0,0,Farrowing,12,12,none,FALSE,TRUE,FALSE,none,none,none,none,none,none,NA,NA,NA
+551_0,0,Farrowing,12,12,none,FALSE,TRUE,TRUE,none,none,none,none,none,none,NA,NA,NA
+552_0,0,Farrowing,12,12,none,FALSE,TRUE,FALSE,none,none,none,none,none,none,NA,NA,NA
+553_0,0,Farrowing,6,6,none,FALSE,TRUE,FALSE,none,none,none,none,none,none,NA,NA,NA
+554_0,0,Farrowing,6,6,none,FALSE,TRUE,FALSE,none,none,none,none,none,none,NA,NA,NA
+555_0,0,Farrowing,6,6,none,FALSE,TRUE,TRUE,none,none,none,none,none,none,NA,NA,NA
+556_0,0,Farrowing,6,6,none,FALSE,TRUE,FALSE,none,none,none,none,none,none,NA,NA,NA
+557_0,0,Farrowing,7,7,none,FALSE,TRUE,FALSE,none,none,none,none,none,none,NA,NA,NA
+558_0,0,Farrowing,7,7,none,FALSE,TRUE,FALSE,none,none,none,none,none,none,NA,NA,NA
+559_0,0,Farrowing,7,7,none,FALSE,TRUE,FALSE,none,none,none,none,none,none,NA,NA,NA
+560_0,0,Farrowing,7,7,none,FALSE,TRUE,FALSE,none,none,none,none,none,none,NA,NA,NA
+501_2,2,Farrowing,3,21,none,FALSE,FALSE,FALSE,none,none,none,none,none,none,NA,NA,NA
+502_2,2,Farrowing,3,21,none,FALSE,FALSE,FALSE,none,none,none,none,none,none,NA,NA,Identified as the source of 8 horizontal infection cases.
+503_2,2,Farrowing,3,21,none,FALSE,FALSE,FALSE,none,none,none,none,none,none,NA,NA,NA
+504_2,2,Farrowing,3,21,none,FALSE,FALSE,FALSE,none,none,none,none,none,none,NA,NA,NA
+505_2,2,Farrowing,4,22,none,FALSE,FALSE,FALSE,none,none,none,none,none,none,NA,NA,NA
+507_2,2,Farrowing,4,22,none,FALSE,FALSE,FALSE,none,none,none,none,none,none,NA,NA,NA
+508_2,2,Farrowing,4,22,none,FALSE,FALSE,FALSE,none,none,none,none,none,none,NA,NA,NA
+509_2,2,Farrowing,4,22,none,FALSE,FALSE,FALSE,none,none,none,none,none,none,NA,NA,NA
+510_2,2,Farrowing,4,22,none,FALSE,FALSE,FALSE,none,none,none,none,none,none,NA,NA,NA
+512_2,2,Farrowing,8,26,none,FALSE,FALSE,FALSE,none,none,none,none,none,none,NA,NA,NA
+514_2,2,Farrowing,8,26,none,FALSE,FALSE,FALSE,none,none,none,none,none,none,NA,NA,NA
+515_2,2,Farrowing,8,26,none,FALSE,FALSE,FALSE,none,none,none,none,1,Initial Infection,NA,NA,Born-viremic and remained so for the entire study but did not transmit the virus. Was re-infected with a different variant at 9 weeks.
+516_2,2,Farrowing,10,28,none,FALSE,FALSE,FALSE,8,none,none,none,none,none,NA,NA,NA
+517_2,2,Farrowing,18,36,none,FALSE,FALSE,FALSE,10,none,none,none,none,none,NA,NA,NA
+518_2,2,Farrowing,18,36,2,FALSE,FALSE,FALSE,10,none,none,none,none,none,NA,NA,NA
+519_2,2,Farrowing,18,36,2,FALSE,FALSE,TRUE,10,none,2,Persistent Infection,none,none,NA,NA,NA
+520_2,2,Farrowing,18,36,2,FALSE,FALSE,TRUE,10,none,2,Persistent Infection,none,none,1,521_6,NA
+521_2,2,Farrowing,18,36,2,FALSE,FALSE,FALSE,10,none,none,none,2,Initial Infection,NA,NA,NA
+522_2,2,Farrowing,18,36,2,FALSE,FALSE,FALSE,10,none,none,none,2,Initial Infection,NA,NA,NA
+523_2,2,Farrowing,13,31,none,FALSE,FALSE,FALSE,11,none,none,none,none,none,NA,NA,NA
+524_2,2,Farrowing,13,31,none,FALSE,FALSE,FALSE,11,none,none,none,none,none,NA,NA,NA
+525_2,2,Farrowing,12,30,none,FALSE,FALSE,FALSE,11,none,none,none,none,none,NA,NA,NA
+526_2,2,Farrowing,14,32,5,TRUE,FALSE,FALSE,11,none,none,none,4,Initial Infection,NA,NA,NA
+527_2,2,Farrowing,14,32,5,TRUE,FALSE,FALSE,11,none,none,none,4,Initial Infection,NA,NA,NA
+528_2,2,Farrowing,11,29,none,FALSE,FALSE,FALSE,none,none,none,none,none,none,NA,NA,NA
+530_2,2,Farrowing,2,20,none,FALSE,FALSE,FALSE,18,none,none,none,none,none,NA,NA,NA
+533_2,2,Farrowing,18,36,2,TRUE,FALSE,FALSE,18,none,none,none,2,Initial Infection,NA,NA,NA
+534_2,2,Farrowing,10,28,none,FALSE,FALSE,FALSE,18,none,none,none,none,none,NA,NA,NA
+535_2,2,Farrowing,15,33,none,FALSE,FALSE,FALSE,none,none,none,none,none,none,NA,NA,NA
+536_2,2,Farrowing,15,33,none,FALSE,FALSE,FALSE,none,none,none,none,none,none,NA,NA,NA
+537_2,2,Farrowing,15,33,none,FALSE,FALSE,FALSE,none,none,none,none,none,none,NA,NA,NA
+538_2,2,Farrowing,15,33,none,FALSE,FALSE,FALSE,none,none,none,none,none,none,NA,NA,NA
+539_2,2,Farrowing,15,33,none,FALSE,FALSE,FALSE,none,none,none,none,none,none,NA,NA,NA
+541_2,2,Farrowing,16,34,none,FALSE,FALSE,FALSE,none,none,none,none,none,none,NA,NA,NA
+542_2,2,Farrowing,16,34,none,FALSE,FALSE,FALSE,none,none,none,none,none,none,NA,NA,NA
+543_2,2,Farrowing,16,34,none,FALSE,FALSE,FALSE,none,none,none,none,none,none,NA,NA,NA
+544_2,2,Farrowing,11,29,none,FALSE,FALSE,FALSE,16,none,none,none,none,none,NA,NA,NA
+545_2,2,Farrowing,16,34,none,FALSE,FALSE,FALSE,none,none,none,none,none,none,NA,NA,NA
+546_2,2,Farrowing,16,34,none,FALSE,FALSE,FALSE,none,none,none,none,none,none,NA,NA,NA
+547_2,2,Farrowing,12,30,none,FALSE,FALSE,FALSE,none,none,none,none,none,none,NA,NA,NA
+548_2,2,Farrowing,10,28,none,FALSE,FALSE,FALSE,12,none,none,none,none,none,NA,NA,NA
+549_2,2,Farrowing,14,32,none,FALSE,FALSE,FALSE,12,none,none,none,none,none,NA,NA,NA
+550_2,2,Farrowing,14,32,none,FALSE,FALSE,FALSE,12,none,none,none,none,none,NA,NA,NA
+552_2,2,Farrowing,14,32,5,TRUE,FALSE,FALSE,12,none,none,none,4,Initial Infection,NA,NA,NA
+553_2,2,Farrowing,6,24,none,FALSE,FALSE,FALSE,none,none,none,none,none,none,NA,NA,NA
+554_2,2,Farrowing,6,24,none,FALSE,FALSE,FALSE,none,none,none,none,none,none,NA,NA,NA
+556_2,2,Farrowing,6,24,none,FALSE,FALSE,FALSE,none,none,none,none,none,none,NA,NA,NA
+557_2,2,Farrowing,3,21,none,FALSE,FALSE,FALSE,7,none,none,none,none,none,NA,NA,NA
+558_2,2,Farrowing,7,25,none,FALSE,FALSE,FALSE,none,none,none,none,none,none,NA,NA,NA
+559_2,2,Farrowing,3,21,none,FALSE,FALSE,FALSE,7,none,none,none,none,none,NA,NA,NA
+560_2,2,Farrowing,7,25,none,FALSE,FALSE,FALSE,none,none,none,none,none,none,NA,NA,NA
+561_2,2,Farrowing,17,35,none,FALSE,TRUE,FALSE,none,none,none,none,none,none,NA,NA,NA
+562_2,2,Farrowing,17,35,none,FALSE,TRUE,FALSE,none,none,none,none,none,none,NA,NA,NA
+563_2,2,Farrowing,17,35,none,FALSE,TRUE,FALSE,none,none,none,none,none,none,NA,NA,NA
+564_2,2,Farrowing,9,27,none,FALSE,TRUE,FALSE,none,none,none,none,none,none,NA,NA,NA
+565_2,2,Farrowing,9,27,none,FALSE,TRUE,FALSE,none,none,none,none,none,none,NA,NA,NA
+566_2,2,Farrowing,9,27,none,FALSE,TRUE,FALSE,none,none,none,none,none,none,NA,NA,NA
+567_2,2,Farrowing,5,23,none,FALSE,TRUE,FALSE,none,none,none,none,none,none,NA,NA,NA
+568_2,2,Farrowing,5,23,none,FALSE,TRUE,FALSE,none,none,none,none,none,none,NA,NA,NA
+569_2,2,Farrowing,5,23,none,FALSE,TRUE,FALSE,none,none,none,none,none,none,NA,NA,NA
+570_2,2,Farrowing,2,20,none,FALSE,TRUE,FALSE,none,none,none,none,none,none,NA,NA,NA
+571_2,2,Farrowing,2,20,none,FALSE,TRUE,FALSE,none,none,none,none,none,none,NA,NA,NA
+572_2,2,Farrowing,2,20,none,FALSE,TRUE,FALSE,none,none,none,none,none,none,NA,NA,NA
+501_3,3,Farrowing,3,39,none,FALSE,FALSE,FALSE,none,none,none,none,none,none,NA,NA,NA
+502_3,3,Farrowing,3,39,4,FALSE,FALSE,FALSE,none,none,none,none,none,none,NA,NA,Identified as the source of 8 horizontal infection cases.
+503_3,3,Farrowing,3,39,4,FALSE,FALSE,FALSE,none,none,none,none,none,none,NA,NA,NA
+504_3,3,Farrowing,3,39,none,FALSE,FALSE,FALSE,none,none,none,none,none,none,NA,NA,NA
+505_3,3,Farrowing,4,40,none,FALSE,FALSE,FALSE,none,none,none,none,none,none,NA,NA,NA
+507_3,3,Farrowing,4,40,none,FALSE,FALSE,FALSE,none,none,none,none,none,none,NA,NA,NA
+508_3,3,Farrowing,4,40,99,FALSE,FALSE,FALSE,none,none,none,none,none,none,NA,NA,NA
+509_3,3,Farrowing,4,40,none,FALSE,FALSE,FALSE,none,none,none,none,none,none,NA,NA,NA
+510_3,3,Farrowing,4,40,none,FALSE,FALSE,FALSE,none,none,none,none,none,none,NA,NA,NA
+512_3,3,Farrowing,8,44,none,FALSE,FALSE,FALSE,none,none,none,none,none,none,NA,NA,NA
+514_3,3,Farrowing,8,44,none,FALSE,FALSE,FALSE,none,none,none,none,none,none,NA,NA,NA
+515_3,3,Farrowing,8,44,none,FALSE,FALSE,FALSE,none,none,none,none,none,none,NA,NA,Born-viremic and remained so for the entire study but did not transmit the virus. Was re-infected with a different variant at 9 weeks.
+516_3,3,Farrowing,10,46,none,FALSE,FALSE,FALSE,none,none,none,none,none,none,NA,NA,NA
+517_3,3,Farrowing,18,54,none,FALSE,FALSE,FALSE,none,none,none,none,none,none,NA,NA,NA
+518_3,3,Farrowing,18,54,2,FALSE,FALSE,FALSE,none,none,none,none,none,none,NA,NA,NA
+521_3,3,Farrowing,18,54,2,FALSE,FALSE,FALSE,none,none,none,none,none,none,NA,NA,NA
+522_3,3,Farrowing,18,54,2,FALSE,FALSE,FALSE,none,none,none,none,none,none,NA,NA,NA
+523_3,3,Farrowing,13,49,none,FALSE,FALSE,FALSE,none,none,none,none,none,none,NA,NA,NA
+524_3,3,Farrowing,13,49,none,FALSE,FALSE,FALSE,none,none,none,none,none,none,NA,NA,NA
+525_3,3,Farrowing,12,48,none,FALSE,FALSE,FALSE,none,none,none,none,none,none,NA,NA,NA
+526_3,3,Farrowing,14,50,5,FALSE,FALSE,FALSE,none,none,none,none,none,none,NA,NA,NA
+527_3,3,Farrowing,14,50,5,FALSE,FALSE,FALSE,none,none,none,none,none,none,NA,NA,NA
+528_3,3,Farrowing,11,47,none,FALSE,FALSE,FALSE,none,none,none,none,none,none,NA,NA,NA
+530_3,3,Farrowing,2,38,none,FALSE,FALSE,FALSE,none,none,none,none,none,none,NA,NA,NA
+533_3,3,Farrowing,18,54,2,FALSE,FALSE,FALSE,none,none,none,none,none,none,NA,NA,NA
+534_3,3,Farrowing,10,46,none,FALSE,FALSE,FALSE,none,none,none,none,none,none,NA,NA,NA
+535_3,3,Farrowing,15,51,none,FALSE,FALSE,FALSE,none,none,none,none,none,none,NA,NA,NA
+536_3,3,Farrowing,15,51,none,FALSE,FALSE,FALSE,none,none,none,none,none,none,NA,NA,NA
+537_3,3,Farrowing,15,51,none,FALSE,FALSE,FALSE,none,none,none,none,none,none,NA,NA,NA
+538_3,3,Farrowing,15,51,none,FALSE,FALSE,FALSE,none,none,none,none,none,none,NA,NA,NA
+539_3,3,Farrowing,15,51,none,FALSE,FALSE,FALSE,none,none,none,none,none,none,NA,NA,NA
+541_3,3,Farrowing,16,52,none,FALSE,FALSE,FALSE,none,none,none,none,none,none,NA,NA,NA
+542_3,3,Farrowing,16,52,none,FALSE,FALSE,FALSE,none,none,none,none,none,none,NA,NA,NA
+543_3,3,Farrowing,16,52,none,FALSE,FALSE,FALSE,none,none,none,none,none,none,NA,NA,NA
+544_3,3,Farrowing,11,47,none,FALSE,FALSE,FALSE,none,none,none,none,none,none,NA,NA,NA
+545_3,3,Farrowing,16,52,none,FALSE,FALSE,FALSE,none,none,none,none,none,none,NA,NA,NA
+546_3,3,Farrowing,16,52,3,FALSE,FALSE,FALSE,none,none,none,none,none,none,NA,NA,NA
+547_3,3,Farrowing,12,48,none,FALSE,FALSE,TRUE,none,none,none,none,none,none,NA,NA,NA
+548_3,3,Farrowing,10,46,none,FALSE,FALSE,FALSE,none,none,none,none,none,none,NA,NA,NA
+549_3,3,Farrowing,14,50,none,FALSE,FALSE,FALSE,none,none,none,none,none,none,NA,NA,NA
+550_3,3,Farrowing,14,50,none,FALSE,FALSE,FALSE,none,none,none,none,none,none,NA,NA,NA
+552_3,3,Farrowing,14,50,5,FALSE,FALSE,FALSE,none,none,none,none,none,none,NA,NA,NA
+553_3,3,Farrowing,6,42,none,FALSE,FALSE,FALSE,none,none,none,none,none,none,NA,NA,NA
+554_3,3,Farrowing,6,42,none,FALSE,FALSE,FALSE,none,none,none,none,none,none,NA,NA,NA
+556_3,3,Farrowing,6,42,none,FALSE,FALSE,FALSE,none,none,none,none,none,none,NA,NA,NA
+557_3,3,Farrowing,3,39,none,FALSE,FALSE,FALSE,none,none,none,none,none,none,NA,NA,NA
+558_3,3,Farrowing,7,43,none,FALSE,FALSE,FALSE,none,none,none,none,none,none,NA,NA,NA
+559_3,3,Farrowing,3,39,none,FALSE,FALSE,FALSE,none,none,none,none,none,none,NA,NA,NA
+560_3,3,Farrowing,7,43,none,FALSE,FALSE,FALSE,none,none,none,none,none,none,NA,NA,NA
+561_3,3,Farrowing,17,53,none,FALSE,FALSE,FALSE,none,none,none,none,none,none,NA,NA,NA
+562_3,3,Farrowing,17,53,none,FALSE,FALSE,FALSE,none,none,none,none,none,none,NA,NA,NA
+563_3,3,Farrowing,17,53,none,FALSE,FALSE,FALSE,none,none,none,none,none,none,NA,NA,NA
+564_3,3,Farrowing,9,45,none,FALSE,FALSE,FALSE,none,none,none,none,none,none,NA,NA,NA
+565_3,3,Farrowing,9,45,none,FALSE,FALSE,FALSE,none,none,none,none,none,none,NA,NA,NA
+566_3,3,Farrowing,9,45,none,FALSE,FALSE,FALSE,none,none,none,none,none,none,NA,NA,NA
+567_3,3,Farrowing,5,41,none,FALSE,FALSE,FALSE,none,none,none,none,none,none,NA,NA,NA
+568_3,3,Farrowing,5,41,none,FALSE,FALSE,FALSE,none,none,none,none,none,none,NA,NA,NA
+569_3,3,Farrowing,5,41,1,FALSE,FALSE,FALSE,none,none,none,none,none,none,NA,NA,NA
+570_3,3,Farrowing,2,38,none,FALSE,FALSE,FALSE,none,none,none,none,none,none,NA,NA,NA
+571_3,3,Farrowing,2,38,none,FALSE,FALSE,FALSE,none,none,none,none,none,none,NA,NA,NA
+572_3,3,Farrowing,2,38,1,FALSE,FALSE,FALSE,none,none,none,none,none,none,NA,NA,NA
+501_4,4,2,1,55,none,FALSE,FALSE,FALSE,3,none,none,none,none,none,NA,NA,NA
+502_4,4,4,9,63,4,TRUE,FALSE,FALSE,3,none,1,Initial Infection,none,none,15,"502_6, 507_6, 523_6, 523_9, 538_9, 542_6, 542_9, 546_4, 547_6, 547_9, 558_6, 558_9, 560_6, 560_9, 570_6",Identified as the source of 8 horizontal infection cases. Set to initial infection from week 3 to week 4 due to data inconsistency
+503_4,4,3,5,59,4,TRUE,FALSE,FALSE,3,none,1,Initial Infection,none,none,2,"503_6, 544_6",Set to initial infection from week 3 to week 4 due to data inconsistency
+504_4,4,2,3,57,none,FALSE,FALSE,FALSE,NA,none,none,none,none,none,NA,NA,NA
+505_4,4,2,1,55,none,FALSE,FALSE,FALSE,4,none,none,none,none,none,NA,NA,NA
+507_4,4,4,9,63,none,FALSE,FALSE,FALSE,4,none,none,none,none,none,NA,NA,NA
+508_4,4,3,6,60,99,TRUE,FALSE,FALSE,4,none,3,Initial Infection,none,none,1,508_6,Listed as initial infection at week <4 and >4. Only kept the value at week 4 to keep data consistent
+509_4,4,4,11,65,none,FALSE,FALSE,FALSE,4,none,none,none,none,none,NA,NA,NA
+510_4,4,3,6,60,none,FALSE,FALSE,FALSE,4,none,none,none,none,none,NA,NA,NA
+512_4,4,4,12,66,none,FALSE,FALSE,FALSE,8,none,none,none,none,none,NA,NA,NA
+514_4,4,2,4,58,none,FALSE,FALSE,FALSE,8,none,none,none,none,none,NA,NA,NA
+515_4,4,2,4,58,none,FALSE,FALSE,FALSE,8,none,none,none,1,Persistent Infection,NA,NA,Born-viremic and remained so for the entire study but did not transmit the virus. Was re-infected with a different variant at 9 weeks.
+516_4,4,3,6,60,none,FALSE,FALSE,FALSE,10,none,none,none,none,none,NA,NA,NA
+518_4,4,4,12,66,2,FALSE,FALSE,FALSE,18,none,none,none,2,Initial Infection,NA,NA,NA
+521_4,4,4,11,65,2,FALSE,FALSE,FALSE,18,none,none,none,2,Persistent Infection,NA,NA,NA
+522_4,4,2,2,56,2,FALSE,FALSE,FALSE,18,none,none,none,2,Persistent Infection,NA,NA,NA
+523_4,4,4,11,65,none,FALSE,FALSE,FALSE,13,none,none,none,none,none,NA,NA,NA
+524_4,4,3,7,61,none,FALSE,FALSE,FALSE,13,none,none,none,none,none,NA,NA,NA
+525_4,4,2,4,58,none,FALSE,FALSE,FALSE,12,none,none,none,none,none,NA,NA,NA
+526_4,4,3,6,60,5,FALSE,FALSE,FALSE,14,none,none,none,4,Persistent Infection,NA,NA,NA
+527_4,4,3,7,61,5,FALSE,FALSE,FALSE,14,none,none,none,4,Persistent Infection,NA,NA,NA
+529_4,4,2,2,56,none,FALSE,FALSE,FALSE,NA,none,none,none,none,none,NA,NA,"529 is introduced at week 0, removed at week 2 and reintroduced at week 4. I set Introduced = FALSE as this is likely an error"
+530_4,4,3,7,61,none,FALSE,FALSE,FALSE,2,none,none,none,none,none,NA,NA,NA
+533_4,4,4,11,65,2,FALSE,FALSE,FALSE,18,none,2,Initial Infection,none,none,NA,NA,NA
+534_4,4,3,6,60,none,FALSE,FALSE,FALSE,10,none,none,none,none,none,NA,NA,NA
+535_4,4,4,11,65,none,FALSE,FALSE,FALSE,15,none,none,none,none,none,NA,NA,NA
+536_4,4,2,3,57,none,FALSE,FALSE,FALSE,15,none,none,none,none,none,NA,NA,NA
+537_4,4,4,12,66,none,FALSE,FALSE,FALSE,15,none,none,none,none,none,NA,NA,NA
+538_4,4,4,12,66,none,FALSE,FALSE,FALSE,15,none,none,none,none,none,NA,NA,NA
+539_4,4,2,3,57,none,FALSE,FALSE,FALSE,15,none,none,none,none,none,NA,NA,NA
+541_4,4,2,3,57,none,FALSE,FALSE,FALSE,16,none,none,none,none,none,NA,NA,NA
+542_4,4,4,9,63,none,FALSE,FALSE,FALSE,16,none,none,none,none,none,NA,NA,NA
+543_4,4,2,1,55,none,FALSE,FALSE,FALSE,16,none,none,none,none,none,NA,NA,NA
+544_4,4,3,5,59,none,FALSE,FALSE,FALSE,11,none,none,none,none,none,NA,NA,NA
+545_4,4,3,8,62,none,FALSE,FALSE,FALSE,16,none,none,none,none,none,NA,NA,NA
+546_4,4,4,10,64,3,TRUE,FALSE,FALSE,16,none,1,Initial Infection,none,none,15,"502_4, 502_6, 507_6, 523_6, 523_9, 538_9, 542_6, 542_9, 547_6, 547_9, 558_6, 558_9, 560_6, 560_9, 570_6",Listed as initial infection at week <4 and >4. Only kept the value at week 4 to keep data consistent
+547_4,4,4,9,63,none,FALSE,FALSE,FALSE,12,none,none,none,none,none,NA,NA,NA
+549_4,4,4,10,64,none,FALSE,FALSE,FALSE,14,none,none,none,none,none,NA,NA,NA
+550_4,4,4,10,64,none,FALSE,FALSE,FALSE,14,none,none,none,none,none,NA,NA,NA
+552_4,4,3,8,62,5,FALSE,FALSE,FALSE,14,none,3,Initial Infection,none,none,3,"526_6, 527_6, 552_6",NA
+554_4,4,2,4,58,none,FALSE,FALSE,FALSE,6,none,none,none,none,none,NA,NA,NA
+556_4,4,2,4,58,none,FALSE,FALSE,FALSE,6,none,none,none,none,none,NA,NA,NA
+557_4,4,2,3,57,none,FALSE,FALSE,FALSE,none,none,none,none,none,none,NA,NA,NA
+558_4,4,4,9,63,none,FALSE,FALSE,FALSE,7,none,none,none,none,none,NA,NA,NA
+559_4,4,2,2,56,none,FALSE,FALSE,FALSE,3,none,none,none,none,none,NA,NA,NA
+560_4,4,4,9,63,none,FALSE,FALSE,FALSE,7,none,none,none,none,none,NA,NA,NA
+561_4,4,2,1,55,none,FALSE,FALSE,FALSE,17,none,none,none,none,none,NA,NA,NA
+562_4,4,2,1,55,none,FALSE,FALSE,FALSE,17,none,none,none,none,none,NA,NA,NA
+563_4,4,4,12,66,none,FALSE,FALSE,TRUE,17,none,none,none,none,none,NA,NA,NA
+564_4,4,2,3,57,none,FALSE,FALSE,FALSE,9,none,none,none,none,none,NA,NA,NA
+565_4,4,2,3,57,none,FALSE,FALSE,FALSE,9,none,none,none,none,none,NA,NA,NA
+566_4,4,4,12,66,none,FALSE,FALSE,FALSE,9,none,none,none,none,none,NA,NA,NA
+567_4,4,2,3,57,none,FALSE,FALSE,FALSE,5,none,none,none,none,none,NA,NA,NA
+568_4,4,2,3,57,none,FALSE,FALSE,FALSE,5,none,none,none,none,none,NA,NA,NA
+569_4,4,4,12,66,1,TRUE,FALSE,FALSE,5,none,2,Initial Infection,none,none,1,566_9,NA
+570_4,4,4,9,63,none,FALSE,FALSE,FALSE,2,none,none,none,none,none,NA,NA,NA
+571_4,4,3,8,62,none,FALSE,FALSE,FALSE,2,none,none,none,none,none,NA,NA,NA
+572_4,4,4,12,66,1,TRUE,FALSE,FALSE,2,none,2,Initial Infection,none,none,1,566_6,NA
+501_6,6,2,1,67,none,FALSE,FALSE,FALSE,none,none,none,none,none,none,NA,NA,NA
+502_6,6,4,9,75,4,FALSE,FALSE,TRUE,none,none,1,Persistent Infection,none,none,15,"502_4, 507_6, 523_6, 523_9, 538_9, 542_6, 542_9, 546_4, 547_6, 547_9, 558_6, 558_9, 560_6, 560_9, 570_6",Identified as the source of 8 horizontal infection cases.
+503_6,6,3,5,71,4,FALSE,FALSE,FALSE,none,none,1,Persistent Infection,none,none,2,"503_4, 544_6",NA
+504_6,6,2,3,69,6,TRUE,FALSE,FALSE,none,none,2,Initial Infection,none,none,18,"501_9, 504_9, 505_9, 525_9, 536_6, 539_6, 539_9, 541_6, 541_9, 554_9, 556_9, 557_6, 557_9, 562_9, 567_6, 567_9, 568_6, 568_9",NA
+505_6,6,2,1,67,none,FALSE,FALSE,FALSE,none,none,none,none,none,none,NA,NA,NA
+507_6,6,4,9,75,4,TRUE,FALSE,FALSE,none,none,1,Initial Infection,none,none,15,"502_4, 502_6, 523_6, 523_9, 538_9, 542_6, 542_9, 546_4, 547_6, 547_9, 558_6, 558_9, 560_6, 560_9, 570_6",NA
+508_6,6,3,6,72,99,FALSE,FALSE,TRUE,none,none,3,Persistent Infection,none,none,1,508_4,NA
+509_6,6,4,11,77,3,TRUE,FALSE,TRUE,none,none,none,none,5,Initial Infection,NA,NA,NA
+510_6,6,3,6,72,99,TRUE,FALSE,TRUE,none,none,none,none,4,Initial Infection,NA,NA,NA
+512_6,6,4,12,78,2,TRUE,FALSE,TRUE,none,none,2,Initial Infection,none,none,NA,NA,NA
+514_6,6,2,4,70,none,FALSE,FALSE,FALSE,none,none,none,none,none,none,NA,NA,NA
+515_6,6,2,4,70,none,FALSE,FALSE,FALSE,none,none,5,Reinfection,none,none,NA,NA,Born-viremic and remained so for the entire study but did not transmit the virus. Was re-infected with a different variant at 9 weeks.
+516_6,6,3,6,72,99,TRUE,FALSE,TRUE,none,none,none,none,4,Initial Infection,NA,NA,NA
+518_6,6,4,12,78,2,FALSE,FALSE,FALSE,none,none,none,none,2,Persistent Infection,NA,NA,NA
+521_6,6,4,11,77,2,FALSE,FALSE,FALSE,none,none,2,Persistent Infection,none,none,1,520_2,NA
+522_6,6,2,2,68,2,FALSE,FALSE,FALSE,none,none,none,none,2,Persistent Infection,NA,NA,NA
+523_6,6,4,11,77,3,TRUE,FALSE,FALSE,none,none,1,Initial Infection,none,none,15,"502_4, 502_6, 507_6, 523_9, 538_9, 542_6, 542_9, 546_4, 547_6, 547_9, 558_6, 558_9, 560_6, 560_9, 570_6",NA
+524_6,6,3,7,73,8,TRUE,FALSE,FALSE,none,none,1,Initial Infection,none,none,4,"524_9, 529_9, 530_6, 571_9",NA
+525_6,6,2,4,70,none,FALSE,FALSE,FALSE,none,none,none,none,none,none,NA,NA,NA
+526_6,6,3,6,72,5,FALSE,FALSE,FALSE,none,none,3,Initial Infection,none,none,3,"527_6, 552_4, 552_6",NA
+527_6,6,3,7,73,5,FALSE,FALSE,FALSE,none,none,3,Initial Infection,none,none,3,"526_6, 552_4, 552_6",NA
+529_6,6,2,2,68,7,TRUE,FALSE,FALSE,none,none,none,none,5,Initial Infection,NA,NA,NA
+530_6,6,3,8,74,8,TRUE,FALSE,FALSE,none,none,1,Initial Infection,none,none,4,"524_6, 524_9, 529_9, 571_9",NA
+533_6,6,4,11,77,2,FALSE,FALSE,FALSE,none,none,2,Persistent Infection,none,none,NA,NA,NA
+534_6,6,3,6,72,none,FALSE,FALSE,TRUE,none,none,none,none,none,none,NA,NA,NA
+535_6,6,4,11,77,none,FALSE,FALSE,FALSE,none,none,none,none,5,Initial Infection,NA,NA,NA
+536_6,6,2,3,69,6,TRUE,FALSE,TRUE,none,none,2,Initial Infection,none,none,18,"501_9, 504_6, 504_9, 505_9, 525_9, 539_6, 539_9, 541_6, 541_9, 554_9, 556_9, 557_6, 557_9, 562_9, 567_6, 567_9, 568_6, 568_9",NA
+537_6,6,4,12,78,none,FALSE,FALSE,FALSE,none,none,none,none,none,none,NA,NA,NA
+538_6,6,4,12,78,none,FALSE,FALSE,FALSE,none,none,none,none,none,none,NA,NA,NA
+539_6,6,2,3,69,6,TRUE,FALSE,FALSE,none,none,2,Initial Infection,none,none,18,"501_9, 504_6, 504_9, 505_9, 525_9, 536_6, 539_9, 541_6, 541_9, 554_9, 556_9, 557_6, 557_9, 562_9, 567_6, 567_9, 568_6, 568_9",NA
+541_6,6,2,3,69,6,TRUE,FALSE,FALSE,none,none,2,Initial Infection,none,none,18,"501_9, 504_6, 504_9, 505_9, 525_9, 536_6, 539_6, 539_9, 541_9, 554_9, 556_9, 557_6, 557_9, 562_9, 567_6, 567_9, 568_6, 568_9",NA
+542_6,6,4,9,75,4,TRUE,FALSE,FALSE,none,none,1,Initial Infection,none,none,15,"502_4, 502_6, 507_6, 523_6, 523_9, 538_9, 542_9, 546_4, 547_6, 547_9, 558_6, 558_9, 560_6, 560_9, 570_6",NA
+543_6,6,2,1,67,none,FALSE,FALSE,FALSE,none,none,none,none,none,none,NA,NA,NA
+544_6,6,3,5,71,4,TRUE,FALSE,FALSE,none,none,1,Initial Infection,none,none,2,"503_4, 503_6",NA
+545_6,6,3,8,74,5,TRUE,FALSE,FALSE,none,none,none,none,4,Initial Infection,NA,NA,NA
+546_6,6,4,10,76,3,FALSE,FALSE,FALSE,none,none,1,Persistent Infection,none,none,NA,NA,NA
+547_6,6,4,10,75,4,TRUE,FALSE,FALSE,none,none,1,Initial Infection,none,none,15,"502_4, 502_6, 507_6, 523_6, 523_9, 538_9, 542_6, 542_9, 546_4, 547_9, 558_6, 558_9, 560_6, 560_9, 570_6",NA
+549_6,6,4,10,76,5,TRUE,FALSE,FALSE,none,none,3,Initial Infection,none,none,NA,NA,NA
+550_6,6,4,10,76,4,TRUE,FALSE,FALSE,none,none,1,Initial Infection,none,none,1,550_9,NA
+552_6,6,3,8,74,5,FALSE,FALSE,FALSE,none,none,3,Persistent Infection,none,none,3,"526_6, 527_6, 552_4",NA
+554_6,6,2,4,70,none,FALSE,FALSE,FALSE,none,none,none,none,none,none,NA,NA,NA
+556_6,6,2,4,70,none,FALSE,FALSE,FALSE,none,none,none,none,none,none,NA,NA,NA
+557_6,6,2,3,69,6,TRUE,FALSE,FALSE,none,none,2,Initial Infection,none,none,18,"501_9, 504_6, 504_9, 505_9, 525_9, 536_6, 539_6, 539_9, 541_6, 541_9, 554_9, 556_9, 557_9, 562_9, 567_6, 567_9, 568_6, 568_9",NA
+558_6,6,4,9,75,4,TRUE,FALSE,FALSE,none,none,1,Initial Infection,none,none,15,"502_4, 502_6, 507_6, 523_6, 523_9, 538_9, 542_6, 542_9, 546_4, 547_6, 547_9, 558_9, 560_6, 560_9, 570_6",NA
+559_6,6,2,2,68,none,FALSE,FALSE,FALSE,none,none,none,none,none,none,NA,NA,NA
+560_6,6,4,9,75,4,TRUE,FALSE,FALSE,none,none,1,Initial Infection,none,none,15,"502_4, 502_6, 507_6, 523_6, 523_9, 538_9, 542_6, 542_9, 546_4, 547_6, 547_9, 558_6, 558_9, 560_9, 570_6",NA
+561_6,6,2,1,67,none,FALSE,FALSE,FALSE,none,none,none,none,none,none,NA,NA,NA
+562_6,6,2,1,67,none,FALSE,FALSE,FALSE,none,none,none,none,none,none,NA,NA,NA
+564_6,6,3,7,73,none,FALSE,FALSE,FALSE,3,2,none,none,none,none,NA,NA,NA
+565_6,6,2,3,69,6,TRUE,FALSE,FALSE,none,none,2,Initial Infection,none,none,NA,NA,NA
+566_6,6,4,12,78,2,TRUE,FALSE,FALSE,none,none,2,Initial Infection,none,none,1,572_4,NA
+567_6,6,2,3,69,6,TRUE,FALSE,FALSE,none,none,2,Initial Infection,none,none,18,"501_9, 504_6, 504_9, 505_9, 525_9, 536_6, 539_6, 539_9, 541_6, 541_9, 554_9, 556_9, 557_6, 557_9, 562_9, 567_9, 568_6, 568_9",NA
+568_6,6,2,3,69,6,TRUE,FALSE,FALSE,none,none,2,Initial Infection,none,none,18,"501_9, 504_6, 504_9, 505_9, 525_9, 536_6, 539_6, 539_9, 541_6, 541_9, 554_9, 556_9, 557_6, 557_9, 562_9, 567_6, 567_9, 568_9",NA
+569_6,6,4,12,78,1,FALSE,FALSE,FALSE,none,none,2,Persistent Infection,none,none,NA,NA,NA
+570_6,6,4,9,75,4,TRUE,FALSE,FALSE,none,none,1,Initial Infection,none,none,15,"502_4, 502_6, 507_6, 523_6, 523_9, 538_9, 542_6, 542_9, 546_4, 547_6, 547_9, 558_6, 558_9, 560_6, 560_9",NA
+571_6,6,3,8,74,8,TRUE,FALSE,FALSE,none,none,none,none,5,Initial Infection,NA,NA,NA
+572_6,6,4,12,78,1,FALSE,FALSE,FALSE,none,none,2,Persistent Infection,none,none,1,572_9,NA
+501_9,9,2,1,79,6,TRUE,FALSE,FALSE,none,none,2,Initial Infection,none,none,18,"504_6, 504_9, 505_9, 525_9, 536_6, 539_6, 539_9, 541_6, 541_9, 554_9, 556_9, 557_6, 557_9, 562_9, 567_6, 567_9, 568_6, 568_9",NA
+503_9,9,3,5,83,none,FALSE,FALSE,FALSE,none,none,none,none,none,none,NA,NA,NA
+504_9,9,2,3,81,6,FALSE,FALSE,FALSE,none,none,2,Persistent Infection,none,none,18,"501_9, 504_6, 505_9, 525_9, 536_6, 539_6, 539_9, 541_6, 541_9, 554_9, 556_9, 557_6, 557_9, 562_9, 567_6, 567_9, 568_6, 568_9",NA
+505_9,9,5,13,91,6,TRUE,FALSE,FALSE,3,2,2,Initial Infection,none,none,18,"501_9, 504_6, 504_9, 525_9, 536_6, 539_6, 539_9, 541_6, 541_9, 554_9, 556_9, 557_6, 557_9, 562_9, 567_6, 567_9, 568_6, 568_9",NA
+507_9,9,4,9,87,none,FALSE,FALSE,FALSE,none,none,1,Persistent Infection,none,none,3,"535_9, 546_9, 570_9",NA
+514_9,9,2,4,82,6,TRUE,FALSE,FALSE,none,none,2,Initial Infection,none,none,NA,NA,NA
+515_9,9,2,4,82,6,TRUE,FALSE,FALSE,none,none,none,none,2,Reinfection,NA,NA,Born-viremic and remained so for the entire study but did not transmit the virus. Was re-infected with a different variant at 9 weeks.
+518_9,9,5,16,94,none,FALSE,FALSE,FALSE,12,4,none,none,none,none,NA,NA,NA
+521_9,9,4,11,89,none,FALSE,FALSE,FALSE,none,none,none,none,none,none,NA,NA,NA
+522_9,9,2,2,80,2,FALSE,FALSE,FALSE,none,none,2,Persistent Infection,none,none,NA,NA,NA
+523_9,9,4,11,89,3,FALSE,FALSE,FALSE,none,none,1,Persistent Infection,none,none,15,"502_4, 502_6, 507_6, 523_6, 538_9, 542_6, 542_9, 546_4, 547_6, 547_9, 558_6, 558_9, 560_6, 560_9, 570_6",NA
+524_9,9,3,7,85,8,FALSE,FALSE,FALSE,none,none,1,Persistent Infection,none,none,4,"524_6, 529_9, 530_6, 571_9",NA
+525_9,9,2,4,82,6,TRUE,FALSE,FALSE,none,none,2,Initial Infection,none,none,18,"501_9, 504_6, 504_9, 505_9, 536_6, 539_6, 539_9, 541_6, 541_9, 554_9, 556_9, 557_6, 557_9, 562_9, 567_6, 567_9, 568_6, 568_9",NA
+526_9,9,3,6,84,none,FALSE,FALSE,FALSE,none,none,none,none,none,none,NA,NA,NA
+527_9,9,3,7,85,none,FALSE,FALSE,FALSE,none,none,none,none,none,none,NA,NA,NA
+529_9,9,2,2,80,7,FALSE,FALSE,FALSE,none,none,1,Initial Infection,none,none,4,"524_6, 524_9, 530_6, 571_9",NA
+530_9,9,3,8,86,8,FALSE,FALSE,FALSE,none,none,1,Persistent Infection,none,none,NA,NA,NA
+535_9,9,5,16,94,none,FALSE,FALSE,FALSE,11,4,1,Initial Infection,none,none,3,"507_9, 546_9, 570_9",NA
+537_9,9,4,12,90,2,TRUE,FALSE,FALSE,none,none,2,Initial Infection,none,none,NA,NA,NA
+538_9,9,4,12,90,3,TRUE,FALSE,FALSE,none,none,1,Initial Infection,none,none,15,"502_4, 502_6, 507_6, 523_6, 523_9, 542_6, 542_9, 546_4, 547_6, 547_9, 558_6, 558_9, 560_6, 560_9, 570_6",NA
+539_9,9,2,3,81,6,FALSE,FALSE,FALSE,none,none,2,Persistent Infection,none,none,18,"501_9, 504_6, 504_9, 505_9, 525_9, 536_6, 539_6, 541_6, 541_9, 554_9, 556_9, 557_6, 557_9, 562_9, 567_6, 567_9, 568_6, 568_9",NA
+541_9,9,2,3,81,6,FALSE,FALSE,FALSE,none,none,2,Persistent Infection,none,none,18,"501_9, 504_6, 504_9, 505_9, 525_9, 536_6, 539_6, 539_9, 541_6, 554_9, 556_9, 557_6, 557_9, 562_9, 567_6, 567_9, 568_6, 568_9",NA
+542_9,9,4,9,87,4,FALSE,FALSE,FALSE,none,none,1,Persistent Infection,none,none,15,"502_4, 502_6, 507_6, 523_6, 523_9, 538_9, 542_6, 546_4, 547_6, 547_9, 558_6, 558_9, 560_6, 560_9, 570_6",NA
+543_9,9,2,1,79,2,TRUE,FALSE,FALSE,none,none,2,Initial Infection,none,none,NA,NA,NA
+544_9,9,3,5,83,4,FALSE,FALSE,FALSE,none,none,1,Persistent Infection,none,none,NA,NA,NA
+545_9,9,3,8,86,none,FALSE,FALSE,FALSE,none,none,none,none,none,none,NA,NA,NA
+546_9,9,4,10,88,none,FALSE,FALSE,FALSE,none,none,1,Persistent Infection,none,none,3,"507_9, 535_9, 570_9",NA
+547_9,9,4,9,87,4,FALSE,FALSE,FALSE,none,none,1,Persistent Infection,none,none,15,"502_4, 502_6, 507_6, 523_6, 523_9, 538_9, 542_6, 542_9, 546_4, 547_6, 558_6, 558_9, 560_6, 560_9, 570_6",NA
+549_9,9,4,10,88,none,FALSE,FALSE,FALSE,none,none,none,none,none,none,NA,NA,NA
+550_9,9,4,10,88,4,FALSE,FALSE,FALSE,none,none,1,Persistent Infection,none,none,1,550_6,NA
+552_9,9,3,8,86,none,FALSE,FALSE,FALSE,none,none,none,none,none,none,NA,NA,NA
+554_9,9,5,14,92,6,TRUE,FALSE,FALSE,4,2,2,Initial Infection,none,none,18,"501_9, 504_6, 504_9, 505_9, 525_9, 536_6, 539_6, 539_9, 541_6, 541_9, 556_9, 557_6, 557_9, 562_9, 567_6, 567_9, 568_6, 568_9",NA
+556_9,9,5,14,92,6,TRUE,FALSE,FALSE,4,2,2,Initial Infection,none,none,18,"501_9, 504_6, 504_9, 505_9, 525_9, 536_6, 539_6, 539_9, 541_6, 541_9, 554_9, 557_6, 557_9, 562_9, 567_6, 567_9, 568_6, 568_9",NA
+557_9,9,2,3,81,6,FALSE,FALSE,FALSE,none,none,2,Persistent Infection,none,none,18,"501_9, 504_6, 504_9, 505_9, 525_9, 536_6, 539_6, 539_9, 541_6, 541_9, 554_9, 556_9, 557_6, 562_9, 567_6, 567_9, 568_6, 568_9",NA
+558_9,9,4,9,87,4,FALSE,FALSE,FALSE,none,none,1,Persistent Infection,none,none,15,"502_4, 502_6, 507_6, 523_6, 523_9, 538_9, 542_6, 542_9, 546_4, 547_6, 547_9, 558_6, 560_6, 560_9, 570_6",NA
+559_9,9,2,2,80,7,TRUE,FALSE,FALSE,none,none,none,none,5,Initial Infection,NA,NA,NA
+560_9,9,5,15,93,4,FALSE,FALSE,FALSE,9,4,1,Persistent Infection,none,none,15,"502_4, 502_6, 507_6, 523_6, 523_9, 538_9, 542_6, 542_9, 546_4, 547_6, 547_9, 558_6, 558_9, 560_6, 570_6",NA
+561_9,9,5,13,91,2,TRUE,FALSE,FALSE,1,2,2,Initial Infection,none,none,NA,NA,NA
+562_9,9,5,13,91,6,TRUE,FALSE,FALSE,1,2,2,Initial Infection,none,none,18,"501_9, 504_6, 504_9, 505_9, 525_9, 536_6, 539_6, 539_9, 541_6, 541_9, 554_9, 556_9, 557_6, 557_9, 567_6, 567_9, 568_6, 568_9",NA
+564_9,9,3,7,81,none,FALSE,FALSE,FALSE,none,none,none,none,none,none,NA,NA,NA
+565_9,9,5,14,92,6,FALSE,FALSE,FALSE,3,2,2,Persistent Infection,none,none,NA,NA,NA
+566_9,9,4,12,90,2,FALSE,FALSE,FALSE,none,none,2,Persistent Infection,none,none,1,569_4,NA
+567_9,9,2,3,81,6,FALSE,FALSE,FALSE,none,none,2,Persistent Infection,none,none,18,"501_9, 504_6, 504_9, 505_9, 525_9, 536_6, 539_6, 539_9, 541_6, 541_9, 554_9, 556_9, 557_6, 557_9, 562_9, 567_6, 568_6, 568_9",NA
+568_9,9,2,3,81,6,FALSE,FALSE,FALSE,none,none,2,Persistent Infection,none,none,18,"501_9, 504_6, 504_9, 505_9, 525_9, 536_6, 539_6, 539_9, 541_6, 541_9, 554_9, 556_9, 557_6, 557_9, 562_9, 567_6, 567_9, 568_6",NA
+569_9,9,4,12,90,none,FALSE,FALSE,FALSE,none,none,none,none,none,none,NA,NA,NA
+570_9,9,4,9,87,none,FALSE,FALSE,FALSE,none,none,1,Persistent Infection,none,none,3,"507_9, 535_9, 546_9",NA
+571_9,9,3,8,86,8,FALSE,FALSE,FALSE,none,none,1,Initial Infection,none,none,4,"524_6, 524_9, 529_9, 530_6",NA
+572_9,9,5,16,94,1,FALSE,FALSE,FALSE,12,4,2,Persistent Infection,none,none,1,572_6,NA
+759_3,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,4,Initial Infection,none,none,5,"759_6, 772_6, 772_9, 789_3, 789_6",NA
+759_6,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,4,Persistent Infection,none,none,5,"759_3, 772_6, 772_9, 789_3, 789_6",NA
+759_9,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,4,Persistent Infection,none,none,NA,NA,NA
+789_3,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,4,Initial Infection,none,none,5,"759_3, 759_6, 772_6, 772_9, 789_6",NA
+789_6,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,4,Persistent Infection,none,none,5,"759_3, 759_6, 772_6, 772_9, 789_3",NA
+772_6,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,4,Initial Infection,none,none,5,"759_3, 759_6, 772_9, 789_3, 789_6",NA
+772_9,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,4,Persistent Infection,none,none,5,"759_3, 759_6, 772_6, 789_3, 789_6",NA
+806_3,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,4,Initial Infection,none,none,NA,NA,NA
+807_3,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,4,Initial Infection,none,none,1,807_6,NA
+807_6,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,4,Persistent Infection,none,none,1,807_3,NA
+819_3,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,4,Initial Infection,none,none,6,"760_6, 773_6, 773_9, 774_6, 774_9, 819_6",NA
+819_6,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,4,Persistent Infection,none,none,6,"760_6, 773_6, 773_9, 774_6, 774_9, 819_3",NA
+773_6,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,4,Initial Infection,none,none,6,"760_6, 773_9, 774_6, 774_9, 819_3, 819_6",NA
+773_9,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,4,Persistent Infection,none,none,6,"760_6, 773_6, 774_6, 774_9, 819_3, 819_6",NA
+774_6,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,4,Initial Infection,none,none,6,"760_6, 773_6, 773_9, 774_9, 819_3, 819_6",NA
+774_9,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,4,Persistent Infection,none,none,6,"760_6, 773_6, 773_9, 774_6, 819_3, 819_6",NA
+760_6,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,4,Initial Infection,none,none,6,"773_6, 773_9, 774_6, 774_9, 819_3, 819_6",NA
+795_6,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,4,Initial Infection,none,none,NA,NA,NA
+795_9,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,4,Persistent Infection,none,none,20,"753_6, 753_9, 764_9, 765_9, 777_6, 777_9, 788_6, 793_6, 793_9, 804_6, 804_9, 805_6, 805_9, 808_6, 808_9, 809_6, 809_9, 814_6, 814_9, 820_6",NA
+818_6,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,4,Initial Infection,none,none,1,818_9,NA
+818_9,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,4,Persistent Infection,none,none,1,818_6,NA
+812_6,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,4,Initial Infection,none,none,1,812_9,NA
+812_9,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,4,Persistent Infection,none,none,1,812_6,NA
+753_6,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,4,Initial Infection,none,none,20,"753_9, 764_9, 765_9, 777_6, 777_9, 788_6, 793_6, 793_9, 795_9, 804_6, 804_9, 805_6, 805_9, 808_6, 808_9, 809_6, 809_9, 814_6, 814_9, 820_6",NA
+753_9,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,4,Persistent Infection,none,none,20,"753_6, 764_9, 765_9, 777_6, 777_9, 788_6, 793_6, 793_9, 795_9, 804_6, 804_9, 805_6, 805_9, 808_6, 808_9, 809_6, 809_9, 814_6, 814_9, 820_6",NA
+808_6,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,4,Initial Infection,none,none,20,"753_6, 753_9, 764_9, 765_9, 777_6, 777_9, 788_6, 793_6, 793_9, 795_9, 804_6, 804_9, 805_6, 805_9, 808_9, 809_6, 809_9, 814_6, 814_9, 820_6",NA
+808_9,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,4,Persistent Infection,none,none,20,"753_6, 753_9, 764_9, 765_9, 777_6, 777_9, 788_6, 793_6, 793_9, 795_9, 804_6, 804_9, 805_6, 805_9, 808_6, 809_6, 809_9, 814_6, 814_9, 820_6",NA
+809_6,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,4,Initial Infection,none,none,20,"753_6, 753_9, 764_9, 765_9, 777_6, 777_9, 788_6, 793_6, 793_9, 795_9, 804_6, 804_9, 805_6, 805_9, 808_6, 808_9, 809_9, 814_6, 814_9, 820_6",NA
+809_9,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,4,Persistent Infection,none,none,20,"753_6, 753_9, 764_9, 765_9, 777_6, 777_9, 788_6, 793_6, 793_9, 795_9, 804_6, 804_9, 805_6, 805_9, 808_6, 808_9, 809_6, 814_6, 814_9, 820_6",NA
+777_6,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,4,Initial Infection,none,none,20,"753_6, 753_9, 764_9, 765_9, 777_9, 788_6, 793_6, 793_9, 795_9, 804_6, 804_9, 805_6, 805_9, 808_6, 808_9, 809_6, 809_9, 814_6, 814_9, 820_6",NA
+777_9,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,4,Persistent Infection,none,none,20,"753_6, 753_9, 764_9, 765_9, 777_6, 788_6, 793_6, 793_9, 795_9, 804_6, 804_9, 805_6, 805_9, 808_6, 808_9, 809_6, 809_9, 814_6, 814_9, 820_6",NA
+793_6,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,4,Initial Infection,none,none,20,"753_6, 753_9, 764_9, 765_9, 777_6, 777_9, 788_6, 793_9, 795_9, 804_6, 804_9, 805_6, 805_9, 808_6, 808_9, 809_6, 809_9, 814_6, 814_9, 820_6",NA
+793_9,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,4,Persistent Infection,none,none,20,"753_6, 753_9, 764_9, 765_9, 777_6, 777_9, 788_6, 793_6, 795_9, 804_6, 804_9, 805_6, 805_9, 808_6, 808_9, 809_6, 809_9, 814_6, 814_9, 820_6",NA
+805_6,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,4,Initial Infection,none,none,20,"753_6, 753_9, 764_9, 765_9, 777_6, 777_9, 788_6, 793_6, 793_9, 795_9, 804_6, 804_9, 805_9, 808_6, 808_9, 809_6, 809_9, 814_6, 814_9, 820_6",NA
+805_9,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,4,Persistent Infection,none,none,20,"753_6, 753_9, 764_9, 765_9, 777_6, 777_9, 788_6, 793_6, 793_9, 795_9, 804_6, 804_9, 805_6, 808_6, 808_9, 809_6, 809_9, 814_6, 814_9, 820_6",NA
+764_9,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,4,Initial Infection,none,none,20,"753_6, 753_9, 765_9, 777_6, 777_9, 788_6, 793_6, 793_9, 795_9, 804_6, 804_9, 805_6, 805_9, 808_6, 808_9, 809_6, 809_9, 814_6, 814_9, 820_6",NA
+765_9,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,4,Initial Infection,none,none,20,"753_6, 753_9, 764_9, 777_6, 777_9, 788_6, 793_6, 793_9, 795_9, 804_6, 804_9, 805_6, 805_9, 808_6, 808_9, 809_6, 809_9, 814_6, 814_9, 820_6",NA
+814_6,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,4,Initial Infection,none,none,20,"753_6, 753_9, 764_9, 765_9, 777_6, 777_9, 788_6, 793_6, 793_9, 795_9, 804_6, 804_9, 805_6, 805_9, 808_6, 808_9, 809_6, 809_9, 814_9, 820_6",NA
+814_9,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,4,Persistent Infection,none,none,20,"753_6, 753_9, 764_9, 765_9, 777_6, 777_9, 788_6, 793_6, 793_9, 795_9, 804_6, 804_9, 805_6, 805_9, 808_6, 808_9, 809_6, 809_9, 814_6, 820_6",NA
+788_6,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,4,Initial Infection,none,none,20,"753_6, 753_9, 764_9, 765_9, 777_6, 777_9, 793_6, 793_9, 795_9, 804_6, 804_9, 805_6, 805_9, 808_6, 808_9, 809_6, 809_9, 814_6, 814_9, 820_6",NA
+804_6,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,4,Initial Infection,none,none,20,"753_6, 753_9, 764_9, 765_9, 777_6, 777_9, 788_6, 793_6, 793_9, 795_9, 804_9, 805_6, 805_9, 808_6, 808_9, 809_6, 809_9, 814_6, 814_9, 820_6",NA
+804_9,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,4,Persistent Infection,none,none,20,"753_6, 753_9, 764_9, 765_9, 777_6, 777_9, 788_6, 793_6, 793_9, 795_9, 804_6, 805_6, 805_9, 808_6, 808_9, 809_6, 809_9, 814_6, 814_9, 820_6",NA
+820_6,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,4,Initial Infection,none,none,20,"753_6, 753_9, 764_9, 765_9, 777_6, 777_9, 788_6, 793_6, 793_9, 795_9, 804_6, 804_9, 805_6, 805_9, 808_6, 808_9, 809_6, 809_9, 814_6, 814_9",NA
+767_9,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,4,Initial Infection,none,none,1,787_9,NA
+787_9,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,4,Initial Infection,none,none,1,767_9,NA
+802_6,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,4,Initial Infection,none,none,NA,NA,NA
+802_9,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,4,Persistent Infection,none,none,NA,NA,NA
+799_9,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,4,Initial Infection,none,none,NA,NA,NA
+763_6,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,none,none,3,Initial Infection,NA,NA,NA
+794_6,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,none,none,3,Initial Infection,NA,NA,NA
+788_9,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,none,none,3,Initial Infection,NA,NA,NA
+785_9,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,none,none,3,Initial Infection,NA,NA,NA
+769_6,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,none,none,3,Initial Infection,NA,NA,NA
+769_9,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,none,none,3,Persistent Infection,NA,NA,NA
+765_6,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,none,none,3,Initial Infection,NA,NA,NA
+770_6,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,none,none,3,Initial Infection,NA,NA,NA
+770_9,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,none,none,3,Persistent Infection,NA,NA,NA
+798_6,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,none,none,3,Initial Infection,NA,NA,NA
+798_9,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,none,none,3,Persistent Infection,NA,NA,NA

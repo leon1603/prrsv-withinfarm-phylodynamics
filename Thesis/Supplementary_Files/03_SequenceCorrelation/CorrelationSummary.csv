@@ -1,0 +1,3 @@
+"Region","Total_Sequences","Unique_100_Percent_Pairs","Num_Identical_Groups","Group_Size_Summary","Num_Unique_Sequences","Redundancy_Percentage"
+"Combined_WGS_Cohort_Formatted_Aligned.fasta",35,0,0,"NA",35,0
+"ORF5",134,573,20,"11x2, 1x3, 2x4, 1x5, 1x6, 1x7, 1x16, 1x19, 1x21",47,64.93

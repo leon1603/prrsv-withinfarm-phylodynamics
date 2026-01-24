@@ -1,0 +1,7 @@
+"Description","Num_Sequences","Min_Length","Max_Length","Ambiguity_Codes_Found","Ambiguity_Codes"
+"WGS_Cohort",35,15098,15098,2,"Y"
+"ORF5_Cohort",134,606,606,0,"None"
+"WGS_Geographical",10,14443,14910,132,"K, M, N, R, S, W, Y"
+"WGS_TaxID1965066",37,14932,15130,225,"K, N, R, S, Y"
+"WGS_Vaccine",5,14758,15120,0,"None"
+"ORF5_TaxID1965066",197,606,606,97,"K, M, R, S, W, Y"

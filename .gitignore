@@ -1,0 +1,18 @@
+
+.Rproj.user
+.Rhistory
+.RData
+.DS_Store
+
+# BEAST 2 Output Files (can be very large)
+*.log
+*.trees
+*.state
+*.xml.state
+
+# Large raw data
+data/00_raw/*
+!data/00_raw/.keep
+
+.httr-oauth
+.quarto
