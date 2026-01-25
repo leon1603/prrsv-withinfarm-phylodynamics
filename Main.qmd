@@ -11,6 +11,12 @@ execute:
 
 # Data Validation
 
+The script begins by screening raw genetic data for duplicates, zero-length entries, and excessive ambiguity characters to ensure data integrity.
+
+-   **Input:** Raw FASTA files from the `data/01_raw/` directory.
+
+-   **Output:** Validation tables stored in `results/tables/01_SequenceValidation`.
+
 ```{r}
 # --- Data Preprocessing: Validation ---
 cat("--- Validating Sequences ---\n")
@@ -39,6 +45,12 @@ cat("--- Succesfully validated sequences ---\n\n")
 ```
 
 # Combining fasta files
+
+This block organizes the data by merging individual raw sequence files into comprehensive Extensive datasets for both the WGS and ORF5 regions.
+
+-   **Input:** Multiple raw FASTA files.
+
+-   **Output:** Combined "Extensive" FASTA files in `data/02_processed/01_CombineFastaFiles/`.
 
 ```{r}
 # --- Data Combination: Combining FASTA files---
@@ -86,6 +98,12 @@ cat("--- Succesfully combined fasta files ---\n\n")
 
 # MSA
 
+Multiple Sequence Alignment (MSA) is performed to align the sequences required for phylogenetic tree reconstruction.
+
+-   **Input:** Extensive and cohort-specific FASTA files.
+
+-   **Output:** Aligned FASTA files in `data/02_processed/02_MSA/`
+
 ```{r}
 # --- Multiple Sequence Alignment ---
 cat("--- Performing MSA ---\n")
@@ -111,6 +129,12 @@ cat("--- Sucessfully performed MSA ---\n\n")
 ```
 
 # Reformatting Splitting and Correcting dates of Cohort Sequences
+
+This step standardizes sequence headers, splits the data by production batch, and adjusts sampling dates for Batch 1, week 9 sequences.
+
+-   **Input:** Aligned cohort FASTA files.
+
+-   **Output:** Batch-split, reformatted FASTA files with corrected dates in `data/02_processed/03_Reformat_Split_CorrectDates/`
 
 ```{r}
 # --- 1. Reformatting, splitting sequences on batch and correct sequence dates ---
@@ -141,6 +165,12 @@ cat("--- Successfully reformatted, corrected, and split sequences into batches -
 
 # Sequence Correlation
 
+The analysis calculates the pairwise identity between sequences to identify identical groups and assess genetic redundancy within the cohort.
+
+-   **Input:** Formatted and aligned cohort FASTA files.
+
+-   **Output:** Heatmap figures and identity summary tables in `figures/01_SequenceCorrelation` and `results/tables/02_SequenceCorrelation`.
+
 ```{r}
 # --- Sequence Identity Analysis ---
 cat("--- Analyzing Sequence Identity ---\n")
@@ -167,6 +197,12 @@ cat("--- Sucesfully performed sequence correlation ---\n\n")
 ```
 
 # Classify Infections By Clade
+
+To ensure the models represent independent transmission events, this block classifies and filters sequences on initial infections, persistent infections, and reinfections based on genetic clades.
+
+-   **Input:** Unstructured tree files from IQ-TREE.
+
+-   **Output:** Classification tables in `results/tables/03_InfectionClassification,` annotated dendrograms in `figures/02_InfectionClassification`, and a filtered FASTA files containing only unique infection events in `data/02_processed/04_InfectionClassification`
 
 ```{r}
 # --- Clade Based Infection Classification ---
@@ -213,6 +249,12 @@ cat("--- Sucesfully classified infections ---\n\n")
 
 # Merge Structured Metadata With Infection Status and Sequence Correlation
 
+This block links sequence-specific data with farm records to create a master metadata file linking genetic results to physical farm locations.
+
+-   **Input:** Hand-annotated metadata, identity summaries, and infection classification files.
+
+-   **Output:** `MetadataExtensive.csv` containing integrated epidemiological and structural data.
+
 ```{r}
 # --- 7. Merge structured data with with Sequence classification and Sequence Correlation output files ---
 cat("--- Merging Structured Metadata with Infection Classifications and Sequence Correlation ---\n")
@@ -244,6 +286,12 @@ cat("--- Metadata merge complete! ---\n\n")
 ```
 
 # Add Structural Information to Sequence Headers
+
+This step appends spatial information, such as pen and room locations, directly to the FASTA sequence headers for use in structured phylodynamic models.
+
+-   **Input:** Filtered/unfiltered FASTA files and the extensive metadata file.
+
+-   **Output:** Annotated FASTA files in `data/02_processed/05_AppendStructuralData/`
 
 ```{r}
 # --- Appending Deme Information to FASTA Headers ---
@@ -337,6 +385,12 @@ cat("--- Succesfully annotated sequence headers with structural data! ---\n\n")
 
 # Phylogram Plot
 
+The script generates rooted phylograms to visualize evolutionary relationships and the spatial distribution of lineages across the farm.
+
+-   **Input:** Structured tree files and infection classification details.
+
+-   **Output:** PNG phylogram images in `figures/03_Phylogram`
+
 ```{r}
 
 # --- 4. Basic Cladogram Plotting ---
@@ -397,6 +451,12 @@ cat("--- Step 4 complete! ---\n\n")
 ```
 
 # BDSKY Analysis and Visualization
+
+**Note:** The Analyse BDSKY Log Files block is optional. To execute this block, the XML files in the `models/BDSKY`directory must first be run in BEAST. The raw `.log` files are omitted from the repository due to their size; however, the processed `.tsv` files are already provided in `results/logs` for immediate use in plotting.
+
+-   **Input:** BEAST `.log` files (if rerunning) or pre-existing `.tsv` result files.
+
+-   **Output:** Summarized parameter tables, error bar plots, and Skyline plots of Re over time.
 
 ## Analyse BDSKY Log Files
 
@@ -617,6 +677,12 @@ Re_plot(
 
 # BDMM Analysis and Visualization
 
+**Note:** The Analyse BDMM Log Files block is optional. This requires running the XML files in the `models/BDMM`directory through BEAST first. While raw logs are omitted, the necessary `.tsv` files are pre-stored in `results/logs` to allow direct generation of figures.
+
+-   **Input:** BEAST `.log` files for structured models or pre-existing `.tsv` files.
+
+-   **Output:** Summarized migration and transmission parameters, and comparative error bar plots.
+
 ## Analyse BDMM Log Files
 
 ```{r}
@@ -629,13 +695,13 @@ source("scripts/01_Analysis/04_SummariseLog.R")
 # Define the log files to process for ORF5
 beast_log_files_to_process_ORF5_BDMM <- c(
   "models/BDMM/BDMM_ORF5_DiscreteMigration/BDMM_ORF5_DiscreteMigration.log",
-  "models/BDMM/BDMM_ORF5_ContinuousMigration/BDMM_ORF5_Isolated_ContinuousMigration.log",
-  "models/BDMM/BDMM_ORF5_DiscreteMigration_SampleFromPrior/BDMM_ORF5_DiscreteMigration_SampleFromPrior.log",
-  "models/BDMM/BDMM_ORF5_ContinuousMigration_SampleFromPrior/BDMM_ORF5_ContinuousMigration_SampleFromPrior.log"
+  "models/BDMM/BDMM_ORF5_ContinuousMigration/BDMM_ORF5_ContinuousMigration.log",
+  "models/BDMM/BDMM_SampleFromPrior_DiscreteMigration/BDMM_SampleFromPrior_DiscreteMigration.log",
+  "models/BDMM/BDMM_SampleFromPrior_ContinuousMigration/BDMM_SampleFromPrior_ContinuousMigration.log"
 )
 
 # Define the output directory for the output results file for ORF5
-beast_results_dir_ORF5_BDMM <- "results/logs/BDMM_ORF5"
+beast_results_dir_ORF5_BDMM <- "results/logs/BDMM"
 
 summarize_beast_logs(
   log_file_paths   = beast_log_files_to_process_ORF5_BDMM,
@@ -658,10 +724,10 @@ source("scripts/04_Visualization/04_PlotBDMM_ErrorBar.R")
 
 # Define processed log files for BDMM
 BDMM_files <- c(
-  "results/logs/BDMM_ORF5/BDMM_ORF5_DiscreteMigration.tsv",
-  "results/logs/BDMM_ORF5/BDMM_ORF5_DiscreteMigration_SampleFromPrior.tsv",
-  "results/logs/BDMM_ORF5/BDMM_ORF5_Isolated_ContinuousMigration.tsv",
-  "results/logs/BDMM_ORF5/BDMM_ORF5_ContinuousMigration_SampleFromPrior.tsv"
+  "results/logs/BDMM/BDMM_ORF5_DiscreteMigration.tsv",
+  "results/logs/BDMM/BDMM_SampleFromPrior_DiscreteMigration.tsv",
+  "results/logs/BDMM/BDMM_ORF5_ContinuousMigration.tsv",
+  "results/logs/BDMM/BDMM_SampleFromPrior_ContinuousMigration.tsv"
 )
 
 # Define model labels (Must match order of files)
