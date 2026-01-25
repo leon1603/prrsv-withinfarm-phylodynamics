@@ -401,63 +401,58 @@ cat("--- Step 4 complete! ---\n\n")
 ## Analyse BDSKY Log Files
 
 ```{r}
-# --- 7. Summarize BEAST Log File ---
-cat("--- Summarizing BEAST Log Files for BDSKY---\n")
+# --- Summarize BEAST Log File ---
+cat("--- Summarizing BEAST Log Files for BDSKY ---\n")
 
 source("scripts/01_Analysis/04_SummariseLog.R")
 
-# Define the log files to be processed for ORF5
+# Define the log files to process for ORF5
 beast_log_files_to_process_ORF5_BDSKY <- c(
   "models/BDSKY/ORF5/BDSKY_ORF5_3Epochs/BDSKY_ORF5_3Epochs.log",
   "models/BDSKY/ORF5/BDSKY_ORF5_4Epochs/BDSKY_ORF5_4Epochs.log",
   "models/BDSKY/ORF5/BDSKY_ORF5_5Epochs/BDSKY_ORF5_5Epochs.log"
-  )
+)
+beast_results_dir_ORF5_BDSKY <- "results/logs/BDSKY_ORF5"
 
-# Define the log files to be processed for WGS
+summarize_beast_logs(
+  log_file_paths   = beast_log_files_to_process_ORF5_BDSKY,
+  output_dir       = beast_results_dir_ORF5_BDSKY,
+  burn_in_fraction = c(0.1, # Burn-in for ORF5 - 3 Epochs
+                       0.1, # Burn-in for ORF5 - 4 Epochs
+                       0.1) # Burn-in for ORF5 - 5 Epochs
+)
+
+# Define the log files to process for WGS
 beast_log_files_to_process_WGS_BDSKY <- c(
   "models/BDSKY/WGS/BDSKY_WGS_3Epochs/BDSKY_WGS_3Epochs.log",
   "models/BDSKY/WGS/BDSKY_WGS_4Epochs/BDSKY_WGS_4Epochs.log",
   "models/BDSKY/WGS/BDSKY_WGS_5Epochs/BDSKY_WGS_5Epochs.log"
-  )
+)
+beast_results_dir_WGS_BDSKY <- "results/logs/BDSKY_WGS"
 
-# Define the log files to be processed for Sample From Prior Analysis
+summarize_beast_logs(
+  log_file_paths   = beast_log_files_to_process_WGS_BDSKY,
+  output_dir       = beast_results_dir_WGS_BDSKY,
+  burn_in_fraction = c(0.1, # Burn-in for WGS - 3 Epochs
+                       0.1, # Burn-in for WGS - 4 Epochs
+                       0.1) # Burn-in for WGS - 5 Epochs
+)
+
+# Define the log files to process for Sample From Prior
 beast_log_files_to_process_SampleFromPrior_BDSKY <- c(
   "models/BDSKY/SampleFromPrior/BDSKY_ORF5_3Epochs_SampleFromPrior/BDSKY_ORF5_3Epochs_SampleFromPrior.log",
   "models/BDSKY/SampleFromPrior/BDSKY_ORF5_4Epochs_SampleFromPrior/BDSKY_ORF5_4Epochs_SampleFromPrior.log",
   "models/BDSKY/SampleFromPrior/BDSKY_ORF5_5Epochs_SampleFromPrior/BDSKY_ORF5_5Epochs_SampleFromPrior.log"
-  )
-
-# Define the directory for the output results files for ORF5
-beast_results_dir_ORF5_BDSKY <- "results/logs/BDSKY_ORF5"
-
-# Define the directory for the output results files for WGS
-beast_results_dir_WGS_BDSKY <- "results/logs/BDSKY_WGS"
-
-# Define the directory for the output results files for SampleFromPrior
+)
 beast_results_dir_SampleFromPrior_BDSKY <- "results/logs/BDSKY_SampleFromPrior"
 
-# Execute the summary function for ORF5
 summarize_beast_logs(
-  log_file_paths = beast_log_files_to_process_ORF5_BDSKY,
-  output_dir = beast_results_dir_ORF5_BDSKY,
-  burn_in_fraction = 0.1
+  log_file_paths   = beast_log_files_to_process_SampleFromPrior_BDSKY,
+  output_dir       = beast_results_dir_SampleFromPrior_BDSKY,
+  burn_in_fraction = c(0.1, # Burn-in for Sample From Prior - 3 Epochs
+                       0.1, # Burn-in for Sample From Prior - 4 Epochs
+                       0.1) # Burn-in for Sample From Prior - 5 Epochs
 )
-
-# Execute the summary function for WGS
-summarize_beast_logs(
-  log_file_paths = beast_log_files_to_process_WGS_BDSKY,
-  output_dir = beast_results_dir_WGS_BDSKY,
-  burn_in_fraction = 0.1
-)
-
-# Execute the summary function for SampleFromPrior
-summarize_beast_logs(
-  log_file_paths = beast_log_files_to_process_SampleFromPrior_BDSKY,
-  output_dir = beast_results_dir_SampleFromPrior_BDSKY,
-  burn_in_fraction = 0.1
-)
-
-cat("--- Succesfully summarised the log files ---\n\n")
 ```
 
 ## Plot BDSKY Log Files (Error Bar Plot)
@@ -625,8 +620,8 @@ Re_plot(
 ## Analyse BDMM Log Files
 
 ```{r}
-# --- 7. Summarize BEAST Log File ---
-cat("--- Summarizing BEAST Log Files for BDMM---\n")
+# --- Summarize BEAST Log File ---
+cat("--- Summarizing BEAST Log Files for BDMM ---\n")
 
 # Load the function from the script
 source("scripts/01_Analysis/04_SummariseLog.R")
@@ -637,16 +632,20 @@ beast_log_files_to_process_ORF5_BDMM <- c(
   "models/BDMM/BDMM_ORF5_ContinuousMigration/BDMM_ORF5_Isolated_ContinuousMigration.log",
   "models/BDMM/BDMM_ORF5_DiscreteMigration_SampleFromPrior/BDMM_ORF5_DiscreteMigration_SampleFromPrior.log",
   "models/BDMM/BDMM_ORF5_ContinuousMigration_SampleFromPrior/BDMM_ORF5_ContinuousMigration_SampleFromPrior.log"
-  )
+)
 
-# Define the *full path* for the output results file for ORF5
+# Define the output directory for the output results file for ORF5
 beast_results_dir_ORF5_BDMM <- "results/logs/BDMM_ORF5"
 
-# Execute the summary function for ORF5
 summarize_beast_logs(
-  log_file_paths = beast_log_files_to_process_ORF5_BDMM,
-  output_dir = beast_results_dir_ORF5_BDMM,
-  burn_in_fraction = 0.1
+  log_file_paths   = beast_log_files_to_process_ORF5_BDMM,
+  output_dir       = beast_results_dir_ORF5_BDMM,
+  burn_in_fraction = c(
+    0.1,  # Burn-in for DiscreteMigration
+    0.1,  # Burn-in for ContinuousMigration
+    0.4,  # Burn-in for DiscreteMigration - SampleFromPrior
+    0.1   # Burn-in for ContinuousMigration - SampleFromPrior
+  )
 )
 ```
 

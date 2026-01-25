@@ -1,26 +1,34 @@
-#' @title Summarize Multiple BEAST Log Files
-#' @description Parses multiple BEAST .log files, removes burn-in, and calculates
+#' @title Summarize Multiple BEAST Log Files with Individual Burn-in
+#' @description Parses multiple BEAST .log files, removes individual burn-in, and calculates
 #' summary statistics (Mean, 95% HPD, ESS) for each parameter.
-#' Output filenames are derived from input filenames by replacing the .log extension with .tsv.
 #' @param log_file_paths A character vector containing full paths to the input BEAST .log files.
 #' @param output_dir The directory where the resulting .tsv files should be saved.
-#' @param burn_in_fraction A numeric value between 0 and 1 indicating the
-#' fraction of states to remove as burn-in. Defaults to 0.1 (10%).
+#' @param burn_in_fraction A numeric value or vector (0 to 1). If a vector, it must 
+#' match the length of log_file_paths. Defaults to 0.1.
 #' @author Leon Balthaus, Gemini
-
-# --- 1. FUNCTION DEFINITION ---
 
 summarize_beast_logs <- function(log_file_paths, output_dir, burn_in_fraction = 0.1) {
   
   library(coda)
   
-  # 2. Validate global inputs
-  if (length(log_file_paths) == 0) {
+  # 1. Validate Inputs
+  n_files <- length(log_file_paths)
+  if (n_files == 0) {
     stop("Error: No input log files provided.")
   }
   
-  if (!is.numeric(burn_in_fraction) || burn_in_fraction < 0 || burn_in_fraction >= 1) {
-    stop("Error: 'burn_in_fraction' must be a numeric value between 0 and 1.")
+  # Handle burn_in_fraction logic
+  # If user provides one value, repeat it for all files
+  if (length(burn_in_fraction) == 1) {
+    burn_in_vector <- rep(burn_in_fraction, n_files)
+  } else if (length(burn_in_fraction) == n_files) {
+    burn_in_vector <- burn_in_fraction
+  } else {
+    stop("Error: 'burn_in_fraction' must be a single value or a vector of the same length as 'log_file_paths'.")
+  }
+  
+  if (any(burn_in_vector < 0 | burn_in_vector >= 1)) {
+    stop("Error: All 'burn_in_fraction' values must be between 0 and 1.")
   }
   
   # Validate and Create Output Directory
@@ -32,21 +40,22 @@ summarize_beast_logs <- function(log_file_paths, output_dir, burn_in_fraction = 
     }
   }
   
-  # Track success of the batch
   overall_success <- TRUE
   
-  # --- 3. MAIN LOOP ---
-  cat("Starting batch processing of", length(log_file_paths), "files...\n")
+  # --- 2. MAIN LOOP ---
+  cat("Starting batch processing of", n_files, "files...\n")
   cat("--------------------------------------------------\n")
   
-  for (log_file_path in log_file_paths) {
+  # Using a loop with index 'i' to track the corresponding burn-in
+  for (i in seq_along(log_file_paths)) {
+    
+    log_file_path <- log_file_paths[i]
+    current_burn_in <- burn_in_vector[i]
     
     tryCatch({
-      
       # Generate Output Filename
       file_name <- basename(log_file_path)
       
-      # Replace .log  with .tsv, or append .tsv if .log is missing
       if (grepl("\\.log$", file_name, ignore.case = TRUE)) {
         new_file_name <- sub("\\.log$", ".tsv", file_name, ignore.case = TRUE)
       } else {
@@ -55,12 +64,11 @@ summarize_beast_logs <- function(log_file_paths, output_dir, burn_in_fraction = 
       
       output_file_path <- file.path(output_dir, new_file_name)
       
-      # Validate specific file existence
       if (!file.exists(log_file_path)) {
         stop("File not found: ", log_file_path)
       }
       
-      cat("\nProcessing:", file_name, "\n")
+      cat("\nProcessing:", file_name, "(Burn-in:", current_burn_in * 100, "%)\n")
       
       # --- Read the log file ---
       log_data <- read.delim(log_file_path, comment.char = "#", stringsAsFactors = FALSE)
@@ -69,7 +77,7 @@ summarize_beast_logs <- function(log_file_paths, output_dir, burn_in_fraction = 
       n_states <- nrow(log_data)
       if (n_states == 0) stop("Log file contains no data rows.")
       
-      burn_in_states <- floor(burn_in_fraction * n_states)
+      burn_in_states <- floor(current_burn_in * n_states)
       log_data_burned <- log_data[(burn_in_states + 1):n_states, ]
       
       if (nrow(log_data_burned) == 0) {
@@ -83,7 +91,7 @@ summarize_beast_logs <- function(log_file_paths, output_dir, burn_in_fraction = 
         log_data_burned$Sample <- NULL
       }
       
-      # --- Calculate Stats Parameter by Parameter ---
+      # --- Calculate Stats ---
       param_names <- colnames(log_data_burned)
       
       stats_list <- lapply(param_names, function(param_name) {
@@ -91,7 +99,6 @@ summarize_beast_logs <- function(log_file_paths, output_dir, burn_in_fraction = 
           column_data <- log_data_burned[[param_name]]
           mean_val <- mean(column_data, na.rm = TRUE)
           
-          # Initialize default values
           hpd_low <- mean_val 
           hpd_up <- mean_val
           ess_val <- NA
@@ -103,16 +110,12 @@ summarize_beast_logs <- function(log_file_paths, output_dir, burn_in_fraction = 
               mcmc_obj <- as.mcmc(na.omit(column_data))
               
               if(length(mcmc_obj) > 0) {
-                # 1. Calculate HPD
                 hpd <- HPDinterval(mcmc_obj, prob = 0.95)
                 hpd_low <- hpd[1, "lower"] 
                 hpd_up <- hpd[1, "upper"]
-                
-                # 2. Calculate ESS (Effective Sample Size)
                 ess_val <- effectiveSize(mcmc_obj)
               }
-            }, error = function(e_calc) {
-            })
+            }, error = function(e_calc) {})
           }
           
           return(data.frame(
@@ -130,7 +133,6 @@ summarize_beast_logs <- function(log_file_paths, output_dir, burn_in_fraction = 
       # --- Assemble and Save ---
       final_table <- do.call(rbind, stats_list)
       row.names(final_table) <- NULL
-      
       write.table(final_table, output_file_path, row.names = FALSE, sep = "\t", quote = FALSE)
       
       cat("-> Saved to:", new_file_name, "\n")
