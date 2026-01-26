@@ -111,20 +111,12 @@ renv::restore()
 
 This will automatically install the correct versions of all required R packages (including `DECIPHER`, `ape`, `tidyverse`, `coda`,`ggtree`, `patchwork`, etc.) as specified in the `renv.lock` file.
 
-## How to Cite
+## AI Acknowledgement
 
-If you use this code or the findings from this study, please refer to the final report located in the `/thesis` directory:
+Google Gemini was used as a computational resource during this project.
+Specifically, Gemini assisted in generating the basic layout for the computational code and served as a technical resource for debugging throughout the data analysis process.
 
-> Balthaus, L.
-> (2026).
-> *Reconstructing Within-Farm Transmission of a PRRSV-1 Outbreak Using Structured and Unstructured Phylodynamic Models*.
-> Master's Thesis, VU Amsterdam.
-
-------------------------------------------------------------------------
-
-**Contact:** Leon Balthaus — [GitHub](https://github.com/leon1603)
-
-**Citation**
+## **Citations**
 
 Bouckaert, R., Vaughan, T. G., Barido-Sottani, J., Duchêne, S., Fourment, M., Gavryushkina, A., Heled, J., Jones, G., Kühnert, D., De Maio, N., Matschiner, M., Mendes, F. K., Müller, N. F., Ogilvie, H. A., du Plessis, L., Popinga, A., Rambaut, A., Rasmussen, D., Siveroni, I., Suchard, M. A., … Drummond, A. J.
 (2019).
@@ -142,4 +134,4 @@ Wong, T. K., Ly-Trong, N., Ren, H., Baños, H., Roger, A. J., Susko, E., ...
 & Minh, B. Q.
 (2025).
 IQ-TREE 3: Phylogenomic Inference Software using Complex Evolutionary Models.
-https://doi.org/10.32942/X2P62N
+<https://doi.org/10.32942/X2P62N>
