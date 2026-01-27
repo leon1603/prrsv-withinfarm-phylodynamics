@@ -4,7 +4,7 @@ This repository contains the computational pipeline, raw data, and analytical sc
 
 ## Project Overview
 
-This project utilizes genomic data from a longitudinal outbreak study (Clilverd et al., 2023) on a 300-sow Spanish farm to: 1. **Reconstruct the epidemic trajectory** over a 12-month period using Birth-Death Skyline (BDSKY) models. 2. **Quantify fine-scale spatial dynamics** using structured Birth-Death with Migration Models (BDMM). 3. **Evaluate genomic resolution** by comparing Whole Genome Sequences (WGS) against the traditional ORF5 marker.
+This project utilizes genomic data from a longitudinal outbreak study (Clilverd et al., 2023) on a 300-sow Spanish farm to: 1. Reconstruct the epidemic trajectory over a 12-month period using Birth-Death Skyline (BDSKY) models. 2. Quantify fine-scale spatial dynamics using structured Birth-Death with Migration Models (BDMM). 3. Evaluate genomic resolution by comparing WGS against ORF5 sequences.
 
 ## Requirements & Software
 
@@ -21,7 +21,7 @@ To run this analysis, ensure the following core software is installed:
 ``` text
 ├── data/
 │   ├── 01_raw/                 # Raw FASTA sequences (WGS & ORF5)
-│   ├── 02_processed/           # Processed files (Aligned, Formatted, Split)
+│   ├── 02_processed/           # Processed files (Aligned, Formatted, Split, final fasta files used in BEAST)
 │   ├── 03_Metadata/            # Metadata csv files
 │   └── 04_InfectionClassification/ # Filtered datasets (independent transmission events)
 ├── scripts/
@@ -34,21 +34,44 @@ To run this analysis, ensure the following core software is installed:
 │   ├── tables/                 # Sequence validation and classification tables
 │   └── trees/                  # ML trees from IQ-TREE (unstructured and structured)
 ├── figures/                    # Generated PNG/PDF figures
-├── models/                     # BEAST2 XML configurations
+├── models/                     # BEAST2 .xml configurations
 ├── Main.qmd                    # Primary Quarto document controlling the workflow 
 └── Thesis                      # Digital copy of thesis and supplementary files
 ```
 
 ## Initialization
 
-### 1. Clone the Repository
+### 1. Clone the Repository (via RStudio)
 
-``` text
-git clone <https://github.com/leon1603/prrsv-withinfarm-phylodynamics.git>
-cd prrsv-withinfarm-phylodynamics
-```
+This project is designed to be opened as an RStudio project. The recommended way to clone the repository is via RStudio’s built-in Git interface:
 
-Open the project in **RStudio** or set your working directory to the repository root.
+1.  Open **RStudio**.
+
+2.  Navigate to **File → New Project…**
+
+3.  Select **Version Control**.
+
+4.  Choose **Git**.
+
+5.  In the **Repository URL** field, paste:
+
+    ```         
+    https://github.com/leon1603/prrsv-withinfarm-phylodynamics.git
+    ```
+
+6.  Choose a local directory where the project should be stored.
+
+7.  Click **Create Project**.
+
+RStudio will automatically:
+
+-   Clone the repository
+
+-   Initialize Git
+
+-   Open the project with the correct working directory set to the repository root
+
+> **Note:** This requires Git to be installed and available on your system. If Git is not detected, RStudio will prompt you to install it.
 
 ### 2. Setup the R environment
 
@@ -68,7 +91,9 @@ This will automatically install the correct versions of all required R packages 
 
 ## Execution of the pipeline
 
-The analysis pipeline is controlled via the Quarto document `Main.qmd`. However, IQ-TREE and BEAST2 are not executed within the Quarto workflow and must be run separately using the software specified in the *Requirements & Software* section. The pipeline consists of the following components:
+The analysis pipeline is controlled via the Quarto document `Main.qmd`. Phylogenetic reconstruction (IQ-TREE) and Bayesian phylodynamic inference (BEAST2) are not executed within the Quarto workflow and are optional to rerun, as the processed outputs required for downstream analyses have been uploaded to this repository. By default, `Main.qmd` is configured to use these precomputed results.
+
+Users who wish to fully reproduce the analysis from raw data may optionally rerun IQ-TREE and BEAST2 externally using the software specified in the "Requirements & Software" section. The pipeline consists of the following components:
 
 ### 1. Data Validation & Preprocessing
 
