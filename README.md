@@ -6,6 +6,16 @@ This repository contains the computational pipeline, raw data, and analytical sc
 
 This project utilizes genomic data from a longitudinal outbreak study (Clilverd et al., 2023) on a 300-sow Spanish farm to: 1. **Reconstruct the epidemic trajectory** over a 12-month period using Birth-Death Skyline (BDSKY) models. 2. **Quantify fine-scale spatial dynamics** using structured Birth-Death with Migration Models (BDMM). 3. **Evaluate genomic resolution** by comparing Whole Genome Sequences (WGS) against the traditional ORF5 marker.
 
+## Requirements & Software
+
+To run this analysis, ensure the following core software is installed:
+
+-   **R \>= 4.5.0** (tested with R 4.5.1)
+
+-   **IQ-TREE 3 (Wong et al., 2025):** For Maximum Likelihood phylogenetic reconstruction.
+
+-   **BEAST v2.7.7 (Bouckaert et al., 2019):** Ensure the following BEAST-specific packages are installed via the BEAST2 Package Manager:`bdmm-prime`, `BDSKY`, `SampledAncestors`, and `bModelTest`.
+
 ## Repository Structure
 
 ``` text
@@ -29,9 +39,36 @@ This project utilizes genomic data from a longitudinal outbreak study (Clilverd 
 └── Thesis                      # Digital copy of thesis and supplementary files
 ```
 
-## Workflow & Execution
+## Initialization
 
-The analysis is designed to be executed via `Main.qmd` in RStudio. The pipeline contains these components:
+### 1. Clone the Repository
+
+``` text
+git clone <https://github.com/leon1603/prrsv-withinfarm-phylodynamics.git>
+cd prrsv-withinfarm-phylodynamics
+```
+
+Open the project in **RStudio** or set your working directory to the repository root.
+
+### 2. Setup the R environment
+
+This project uses the `renv` package to ensure a reproducible environment.  You do not need to install R packages manually.To set up the environment:
+
+1.  Open the project in RStudio (or set your working directory to the project root).
+
+2.  Install `renv` if you haven't already: `install.packages("renv")`.
+
+3.  Run the following command to restore the local library:
+
+``` r
+renv::restore()
+```
+
+This will automatically install the correct versions of all required R packages (including `DECIPHER`, `ape`, `tidyverse`, `coda`,`ggtree`, `patchwork`, etc.) as specified in the `renv.lock` file.
+
+## Execution of the pipeline
+
+The analysis pipeline is controlled via the Quarto document `Main.qmd`. However, IQ-TREE and BEAST2 are not executed within the Quarto workflow and must be run separately using the software specified in the *Requirements & Software* section. The pipeline consists of the following components:
 
 ### 1. Data Validation & Preprocessing
 
@@ -68,32 +105,6 @@ The core analysis utilizes both Birth-Death Skyline (BDSKY) (Unstructured) and
 > -   **To Summarize Data:** Feed the resulting raw log files into the `summarize_beast_logs` function within `scripts/01_Analysis/04_summariseLog.R` (as automated in `Main.qmd`).
 >
 > -   **Pre-calculated Results:** The summarized TSV versions of these logs are available in `results/logs/`for immediate use in the visualization scripts.
-
-## Requirements & Software
-
-To run this analysis, ensure the following core software is installed:
-
--   **R (≥ 4.0)**
-
--   **IQ-TREE 3 (Wong et al., 2025):** For Maximum Likelihood phylogenetic reconstruction.
-
--   **BEAST v2.7.7 (Bouckaert et al., 2019):** Ensure the following BEAST-specific packages are installed via the BEAST2 Package Manager:`bdmm-prime`, `BDSKY`, `SampledAncestors`, and `bModelTest`.
-
-#### Managing R Dependencies with `renv`
-
-This project uses the `renv` package to ensure a reproducible environment.  You do not need to install R packages manually.To set up the environment:
-
-1.  Open the project in RStudio (or set your working directory to the project root).
-
-2.  Install `renv` if you haven't already: `install.packages("renv")`.
-
-3.  Run the following command to restore the local library:
-
-``` r
-renv::restore()
-```
-
-This will automatically install the correct versions of all required R packages (including `DECIPHER`, `ape`, `tidyverse`, `coda`,`ggtree`, `patchwork`, etc.) as specified in the `renv.lock` file.
 
 ## AI Acknowledgement
 
