@@ -1,7 +1,7 @@
 #' @title Plot Annotated Rooted Phylogram
-#' @description This function loads a phylogenetic tree, automatically midpoint-roots it
-#' if it is unrooted, and saves a phylogram directly into the specified output directory.
-#' Bootstrap values are plotted at the nodes, ranches are colored by Clade and tip nodes are annotated with structural metadata
+#' @description This function loads a phylogenetic tree, automatically midpoint-roots it,
+#' and saves a phylogram. It plots bootstrap values, colors branches by Clade, 
+#' and annotates tips with Pen (Triangle) and Room (Square) metadata.
 #' @param tree_file_path The full path to the input phylogenetic tree file.
 #' @param csv_file_path The full path to the input CSV file containing classification metadata.
 #' @param output_dir The base path for the output directory.
@@ -12,13 +12,9 @@
 #' @param branch_width Numeric value controlling the thickness of the tree branches.
 #' @param visualize_clades If TRUE, branches are colored by Clade.
 #' @param tip_label_offset Manually sets the space between the tree tip and the sequence name. 
-#' If NULL, the offset is calculated automatically based on tree depth.
-#' @param tree_x_offset Manually shifts the start of the tree to the right to increase 
-#' the distance between the legend and the tree. Default is 0.
-#' @param node_symbol_cex Scaling factor for the size of the symbols (circles, triangles, squares) 
-#' plotted at the tips and in the legend.
+#' @param tree_x_offset Manually shifts the start of the tree to the right.
+#' @param node_symbol_cex Scaling factor for the size of the symbols (triangles, squares).
 #' @param star_cex Scaling factor for the size of the star (*) symbols for infections.
-#' @return Saves the plot file to the output directory.
 #' @author Leon Balthaus, Gemini
 
 phylogram <- function(tree_file_path, csv_file_path, output_dir, output_filename,
@@ -36,13 +32,13 @@ phylogram <- function(tree_file_path, csv_file_path, output_dir, output_filename
   if (!file.exists(csv_file_path)) stop("Error: CSV file not found at: ", csv_file_path)
   
   tryCatch({
-    cat("--- Generating basic phylogram with hierarchical groups & clade coloring... ---\n")
+    cat("--- Generating phylogram with Pen & Room structure... ---\n")
     
     # 1. Load data
     phylo_tree <- read.tree(tree_file_path)
     meta_data <- read.csv(csv_file_path, stringsAsFactors = FALSE)
     
-    # 1b. autmatic midpoint rooting
+    # 1b. Automatic midpoint rooting
     if (!is.rooted(phylo_tree)) {
       cat(" -> Tree is unrooted. Performing midpoint rooting...\n")
       phylo_tree <- midpoint.root(phylo_tree)
@@ -59,7 +55,7 @@ phylogram <- function(tree_file_path, csv_file_path, output_dir, output_filename
     # Create lookup maps
     meta_map <- setNames(meta_data$Classification, meta_data$pigID_weekOfSampling)
     
-    # Check if 'Clade' column exists
+    # Check if Clade column exists
     has_clade <- "Clade" %in% colnames(meta_data)
     if (has_clade) {
       clade_map <- setNames(meta_data$Clade, meta_data$pigID_weekOfSampling)
@@ -86,7 +82,7 @@ phylogram <- function(tree_file_path, csv_file_path, output_dir, output_filename
         if (key %in% names(meta_map)) {
           classification <- meta_map[[key]]
           
-          # infection classification logic
+          # Infection classification logic
           if (classification == "Initial Infection") {
             star_chars[i] <- "*"
             star_colors[i] <- "black"
@@ -102,55 +98,7 @@ phylogram <- function(tree_file_path, csv_file_path, output_dir, output_filename
       }
     }
     
-    # identify sequence goups
-    dist_mat <- cophenetic(plotting_tree)
-    hc <- hclust(as.dist(dist_mat), method = "single")
-    raw_assignments <- cutree(hc, h = 1e-5)
-    
-    group_counts <- table(raw_assignments)
-    valid_raw_ids <- names(group_counts[group_counts > 1])
-    
-    tip_group_colors <- rep("black", num_tips)
-    legend_group_labels <- c()
-    legend_group_colors <- c()
-    
-    if (length(valid_raw_ids) > 0) {
-      group_data <- data.frame(
-        RawID = valid_raw_ids,
-        Size = as.numeric(group_counts[valid_raw_ids]),
-        stringsAsFactors = FALSE
-      )
-      group_data <- group_data[order(group_data$Size, group_data$RawID), ]
-      group_data$Rank <- 1:nrow(group_data)
-      n_groups <- nrow(group_data)
-      
-      distinct_palette <- c("#E41A1C", "#377EB8", "#4DAF4A", "#984EA3", "#FF7F00", "#FFFF33", 
-                            "#A65628", "#F781BF", "#999999", "#1F78B4", "#B2DF8A",
-                            "#33A02C", "#FB9A99", "#E31A1C", "#FDBF6F", "#CAB2D6", "#6A3D9A",
-                            "#B15928", "#8DD3C7", "#BEBADA", "#FB8072", "#80B1D3", "#FDB462", "#B3DE69")
-      
-      if (n_groups <= length(distinct_palette)) {
-        rank_palette <- distinct_palette[1:n_groups]
-      } else {
-        rank_palette <- colorRampPalette(distinct_palette)(n_groups)
-      }
-      
-      raw_id_to_color <- setNames(rank_palette[group_data$Rank], group_data$RawID)
-      
-      for (i in 1:num_tips) {
-        tip_name <- original_labels[i]
-        raw_id <- as.character(raw_assignments[tip_name])
-        if (raw_id %in% valid_raw_ids) tip_group_colors[i] <- raw_id_to_color[raw_id]
-      }
-      
-      for (i in 1:n_groups) {
-        row <- group_data[i, ]
-        legend_group_labels <- c(legend_group_labels, paste0("Group ", row$Rank, " (n=", row$Size, ")"))
-        legend_group_colors <- c(legend_group_colors, rank_palette[i])
-      }
-    }
-    
-    # parsing functions
+    # Parsing functions
     extract_pen <- function(x) {
       parts <- strsplit(x, "_")[[1]]
       if (length(parts) >= 2 && grepl("^P", parts[2])) return(parts[2]) else return("Other")
@@ -174,7 +122,7 @@ phylogram <- function(tree_file_path, csv_file_path, output_dir, output_filename
       if (length(parts) >= 5) return(parts[5]) else return(x)
     }
     
-    # data processing
+    # Data processing
     numeric_sort <- function(ids) {
       if (length(ids) == 0) return(ids)
       nums <- suppressWarnings(as.numeric(gsub("[^0-9]", "", ids)))
@@ -199,7 +147,7 @@ phylogram <- function(tree_file_path, csv_file_path, output_dir, output_filename
     num_weeks <- suppressWarnings(as.numeric(unique_weeks))
     if (!any(is.na(num_weeks))) unique_weeks <- unique_weeks[order(num_weeks)] else unique_weeks <- sort(unique_weeks)
     
-    # olor generation
+    # Color generation
     distinct_color_generator <- colorRampPalette(c("red", "blue", "green", "darkorange", "purple", "cyan", "magenta", "brown", "darkgreen", "navy", "pink"))
     if(length(unique_pens) > 0) {
       pen_palette <- distinct_color_generator(length(unique_pens))
@@ -228,7 +176,7 @@ phylogram <- function(tree_file_path, csv_file_path, output_dir, output_filename
       tip_room_colors <- room_palette[room_ids]
     }
     
-    # clade colors
+    # Clade colors
     edge_colors <- rep("black", nrow(plotting_tree$edge)) 
     clade_palette <- NULL
     
@@ -260,7 +208,7 @@ phylogram <- function(tree_file_path, csv_file_path, output_dir, output_filename
       }
     }
     
-    # update tip labels
+    # Update tip labels
     final_pig_ids <- sapply(original_labels, extract_pig_id)
     final_week_nums <- sapply(original_labels, extract_week)
     final_labels <- paste0(final_pig_ids, " (", final_week_nums, ")")
@@ -297,7 +245,7 @@ phylogram <- function(tree_file_path, csv_file_path, output_dir, output_filename
          tip.color = "black", 
          main = "") 
     
-    # add stars for infection classification
+    # Add stars for infection classification
     lastPP <- get("last_plot.phylo", envir = .PlotPhyloEnv)
     label_widths <- strwidth(final_labels, cex = tip_cex)
     
@@ -312,15 +260,12 @@ phylogram <- function(tree_file_path, csv_file_path, output_dir, output_filename
       }
     }
     
-    # --- ADD SYMBOLS---
+    # --- ADD SYMBOLS ---
     
-    # 1. Circle (Group) - Plotted at the tip
-    tiplabels(pch = 21, bg = tip_group_colors, col = "black", 
-              cex = node_symbol_cex, adj = 0.5) 
     symbol_width_user <- strwidth("M", cex = node_symbol_cex)
     symbol_gap <- symbol_width_user * 0.7
     
-    # 2. Triangle (Pen)
+    # 1. Triangle (Pen)
     offset_pen <- symbol_gap
     
     if (length(valid_pen_indices) > 0) {
@@ -328,8 +273,8 @@ phylogram <- function(tree_file_path, csv_file_path, output_dir, output_filename
                 col = "black", cex = node_symbol_cex, offset = offset_pen) 
     }
     
-    # 3. Square (Room)
-    offset_room <- symbol_gap * 2
+    # 2. Square (Room)
+    offset_room <- symbol_gap * 2.2
     
     if (length(valid_room_indices) > 0) {
       tiplabels(tip = valid_room_indices, pch = 22, bg = tip_room_colors[valid_room_indices], 
@@ -368,7 +313,7 @@ phylogram <- function(tree_file_path, csv_file_path, output_dir, output_filename
       current_y <- current_y - l3$rect$h - legend_gap
     }
     
-    # bootstrap visualization
+    # Bootstrap visualization
     bs_values <- plotting_tree$node.label
     if (!is.null(bs_values)) {
       # 1. Identify valid nodes and labels
@@ -464,7 +409,7 @@ phylogram <- function(tree_file_path, csv_file_path, output_dir, output_filename
     add.scale.bar(x = legend_x, y = 0, cex = legend_cex)
     dev.off()
     
-    cat(paste(" -> Basic tree image saved to:", plot_path, "\n"))
+    cat(paste(" -> Tree image saved to:", plot_path, "\n"))
     cat("--- Task complete! ---\n")
     return(invisible(TRUE))
     

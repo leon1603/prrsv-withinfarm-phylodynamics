@@ -40,8 +40,6 @@ validate_sequences(
   fasta_files_to_validate = input_filepaths,
   output_dir = output_directory
 )
-
-cat("--- Succesfully validated sequences ---\n\n")
 ```
 
 # Combining fasta files
@@ -92,8 +90,6 @@ for (task in combine_tasks) {
     output_file = task$output
   )
 }
-
-cat("--- Succesfully combined fasta files ---\n\n")
 ```
 
 # MSA
@@ -124,8 +120,6 @@ perform_msa(
   input_files = files_to_align,
   output_dir = msa_output_directory
 )
-
-cat("--- Sucessfully performed MSA ---\n\n")
 ```
 
 # Reformatting Splitting and Correcting dates of Cohort Sequences
@@ -159,8 +153,6 @@ reformat_and_split_sequences(
   new_date     = "2017-07-25",  # Enter the date that the header should contain
   target_region = "ORF5"        # Enter the genomic component (WGS or ORF5)
 )
-
-cat("--- Successfully reformatted, corrected, and split sequences into batches ---\n\n")
 ```
 
 # Sequence Correlation
@@ -172,7 +164,7 @@ The analysis calculates the pairwise identity between sequences to identify iden
 -   **Output:** Heatmap figures and identity summary tables in `figures/01_SequenceCorrelation` and `results/tables/02_SequenceCorrelation`.
 
 ```{r}
-# --- Sequence Identity Analysis ---
+# --- Sequence Similarity Analysis ---
 cat("--- Analyzing Sequence Identity ---\n")
 
 source("scripts/01_Analysis/02_SequenceCorrelation.R") 
@@ -192,8 +184,6 @@ identity_summary_table <- analyze_sequence_identity(
   figure_dir = figure_directory,
   table_dir = table_directory
 )
-
-cat("--- Sucesfully performed sequence correlation ---\n\n")
 ```
 
 # Classify Infections By Clade
@@ -243,8 +233,6 @@ classify_infections_by_clade(
   label_size = 0.7,
   legend_size = 1.2  
 )
-
-cat("--- Sucesfully classified infections ---\n\n")
 ```
 
 # Merge Structured Metadata With Infection Status and Sequence Correlation
@@ -281,8 +269,6 @@ merge_data(
   identity_summary_path = identity_summary_file,
   output_path = output_merged_file
 )
-
-cat("--- Metadata merge complete! ---\n\n")
 ```
 
 # Add Structural Information to Sequence Headers
@@ -379,8 +365,6 @@ append_pen_and_room(
   custom_output_filename = output_filename_WGS_Combined_unfiltered,
   batch_to_remove = NULL
 )
-
-cat("--- Succesfully annotated sequence headers with structural data! ---\n\n")
 ```
 
 # Phylogram Plot
@@ -392,8 +376,7 @@ The script generates rooted phylograms to visualize evolutionary relationships a
 -   **Output:** PNG phylogram images in `figures/03_Phylogram`
 
 ```{r}
-
-# --- 4. Basic Cladogram Plotting ---
+# --- Plotting Structured Phylogam  ---
 cat("--- Generating phylogram ---\n")
 
 source("scripts/04_Visualization/01_PlotPhylogram.R") 
@@ -446,8 +429,6 @@ phylogram(
   tree_x_offset = 0.003,
   visualize_clades = TRUE
 )
-
-cat("--- Step 4 complete! ---\n\n")
 ```
 
 # BDSKY Analysis and Visualization
@@ -611,7 +592,7 @@ plot_bdsky_results(
 ## Plot BDSKY Log Files (Skyline)
 
 ```{r}
-# --- 7. Generate BEAST Skyline Plots ---
+# --- Generate BEAST Skyline Plots ---
 cat("--- Generating BDSKY Skyline Plots ---\n")
 
 source("scripts/04_Visualization/03_PlotBDSKY_Skyline.R") 
@@ -718,7 +699,7 @@ summarize_beast_logs(
 ## Plot BDMM Log Files (Error Bar Plot)
 
 ```{r}
-# --- 7. BDMM Model Comparison Plots ---
+# --- BDMM Model Comparison Plots ---
 cat("--- Plotting BDMM Model Results ---\n")
 source("scripts/04_Visualization/04_PlotBDMM_ErrorBar.R")
 
@@ -743,7 +724,6 @@ plot_output_dir <- "figures/05_BDMM"
 output_filename <- "BDMM_ErrorBar.png"
 
 plot_output_dir_thesis <- "Thesis/Figures"
-output_filename_thesis <- "BDMM_ErrorBar_Thesis.png" # Still delete
 
 plot_bdmm_results(
   results_file_paths = BDMM_files,
@@ -763,34 +743,6 @@ plot_bdmm_results(
   axis_text_size = 18,    
   y_axis_text_size = 18,
   legend_text_size = 18,  
-  strip_text_size = 17,   
-  plot_title_size = 17,
-  figure_height = 20,
-  point_size = 4,
-  figure_width = 14,        
-  row_height_base = 3,
-  y_axis_padding = 0.05
-)
-
-#FOR THESIS
-plot_bdmm_results(
-  results_file_paths = BDMM_files,
-  model_names = BDMM_labels,
-  output_dir = plot_output_dir_thesis,
-  output_filename = output_filename_thesis,
-  show_re = TRUE,
-  show_sampling = TRUE,
-  show_origin = TRUE,
-  show_clock = TRUE,
-  show_become_uninfectious = TRUE,
-  show_migration = TRUE,
-  show_reservoir = FALSE,
-  include_continuous_models = FALSE,
-  base_font_size = 12,
-  line_width = NULL,                          
-  axis_text_size = 18,    
-  y_axis_text_size = 18,
-  legend_text_size = 20,  
   strip_text_size = 17,   
   plot_title_size = 17,
   figure_height = 20,
