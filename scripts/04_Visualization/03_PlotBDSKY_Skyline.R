@@ -239,7 +239,7 @@ Re_plot <- function(input_groups,
           (if (show_batch_bars && !is.null(batch3_dates)) annotate("rect", xmin = batch3_dates$start, xmax = batch3_dates$end, ymin = -Inf, ymax = Inf, fill = "lightcoral", alpha = 0.4) else NULL) +
           
           # 2. Sampling Density
-          (if (!is.null(sampling_dates_df)) geom_density(data = sampling_dates_df, aes(x = date, y = after_stat(scaled) * (6 * 0.15)), adjust = density_bandwidth, fill = "purple", color = NA, alpha = 0.8) else NULL) +
+          (if (!is.null(sampling_dates_df)) geom_density(data = sampling_dates_df, aes(x = date, y = after_stat(scaled) * (2)), adjust = density_bandwidth, fill = "purple", color = NA, alpha = 0.8) else NULL) +
           
           # 3. Main Skyline (Re)
           geom_rect(data = ribbon_data, aes(xmin = xmin, xmax = xmax, ymin = ymin, ymax = ymax), fill = "steelblue", alpha = 0.3) +
